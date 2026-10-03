@@ -1,0 +1,4 @@
+# Versions available in this workspace and used by the verification tests.
+Pillow==10.4.0
+numpy==2.2.6
+scipy==1.17.1

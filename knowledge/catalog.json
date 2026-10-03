@@ -1,0 +1,46 @@
+{
+  "classes": [
+    {"class_id":1,"label_en":"Rust","label_hi":"कॉफी रतुआ","type":"disease"},
+    {"class_id":2,"label_en":"Cercospora","label_hi":"सर्कोस्पोरा पत्ती धब्बा","type":"disease"},
+    {"class_id":3,"label_en":"Phoma","label_hi":"फोमा","type":"disease"},
+    {"class_id":4,"label_en":"Miner","label_hi":"पत्ती सुरंगक कीट","type":"pest"},
+    {"class_id":5,"label_en":"Healthy","label_hi":"स्वस्थ","type":"healthy"},
+    {"class_id":6,"label_en":"unknown","label_hi":"अज्ञात / निश्चित नहीं","type":"unknown"}
+  ],
+  "datasets": [
+    {
+      "dataset_id":"jmuben","name":"JMuBEN","doi":"10.17632/t2r6rszp5c.1",
+      "source_url":"https://data.mendeley.com/datasets/t2r6rszp5c/1","license":"CC-BY-4.0","version":"1",
+      "citation":"Jepkoech et al. (2021). JMuBEN. Mendeley Data V1. doi:10.17632/t2r6rszp5c.1",
+      "role":"train","preprocessing_notes":"Kenyan Arabica leaves. Cropped, squared, rotated/flipped source images. Local clean PNGs; exact deduplication; D4 pixel grouping; reviewed pHash candidates. size_mb is retained clean files only.",
+      "what_it_does_not_cover":"No demonstrated Indian field accuracy; not an agronomic treatment source."
+    },
+    {
+      "dataset_id":"jmuben2","name":"JMuBEN2","doi":"10.17632/tgv3zb82nd.1",
+      "source_url":"https://data.mendeley.com/datasets/tgv3zb82nd/1","license":"CC-BY-4.0","version":"1",
+      "citation":"Jepkoech et al. (2021). JMuBEN2. Mendeley Data V1. doi:10.17632/tgv3zb82nd.1",
+      "role":"train","preprocessing_notes":"Healthy and Miner from Kenyan Arabica. Cropped, squared and augmented source images. Local clean PNGs; grouping before splitting. size_mb is retained clean files only.",
+      "what_it_does_not_cover":"Not evidence for other pests, coffee species, or uncropped phone photos."
+    },
+    {
+      "dataset_id":"plantdoc","name":"PlantDoc","doi":null,
+      "source_url":"https://github.com/pratikkayal/PlantDoc-Dataset","license":null,"version":null,
+      "citation":"PlantDoc; local PlantDoc-Dataset-master checkout. Verify license, exact revision and paper citation before distribution.",
+      "role":"ood_test","preprocessing_notes":"Only source train/test class trees; both retained as OOD test only. Non-coffee labels map to unknown. Documentation illustrations excluded.",
+      "what_it_does_not_cover":"Not coffee training or validation data. Unknown/rejection evaluation only."
+    },
+    {
+      "dataset_id":"own_photos","name":"own_photos","doi":null,"source_url":null,"license":null,"version":null,
+      "citation":"Project-owned independently labelled phone-photo collection; populate actual collection metadata when imported.",
+      "role":"test","preprocessing_notes":"Metadata-free, labelled real-world photos; repeated views grouped using capture leaf IDs. Never train or tune on this set.",
+      "what_it_does_not_cover":"A 20-30 leaf convenience pilot does not establish population-wide diagnostic accuracy."
+    },
+    {
+      "dataset_id":"common_voice_hi","name":"common_voice_hi","doi":null,"source_url":null,"license":null,
+      "version":"27.0-2026-09-11 (local directory label; verify against release manifest)",
+      "citation":"Mozilla Common Voice Hindi; local directory cv-corpus-27.0-2026-09-11-hi. Release citation and license require manifest verification.",
+      "role":"voice","preprocessing_notes":"Speech recognition only. Not read or imported by the image workflow.",
+      "what_it_does_not_cover":"Not synthesized voice, farmer-facing advice recordings, or leaf disease evidence."
+    }
+  ]
+}
