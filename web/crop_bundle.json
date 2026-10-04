@@ -6,19 +6,19 @@
   },
   {
    "key": "content_version",
-   "value": "0.3.1"
+   "value": "0.4.1"
   },
   {
    "key": "cropset",
-   "value": "bean_maize"
+   "value": "full"
   },
   {
    "key": "active_model_version",
-   "value": "v0.2b"
+   "value": "v0.3"
   },
   {
    "key": "threshold_high",
-   "value": "0.80"
+   "value": "0.90"
   },
   {
    "key": "threshold_unknown",
@@ -70,7 +70,7 @@
    "name_en": "Coffee",
    "scientific_name": "Coffea arabica / Coffea canephora",
    "icon": "coffee.png",
-   "enabled": 0,
+   "enabled": 1,
    "sort_order": 2
   },
   {
@@ -192,6 +192,34 @@
    "why_en": "Even dark green colour, no spots or powder.",
    "content_status": "draft",
    "source": "n/a"
+  },
+  {
+   "disease_id": "coffee_cercospora",
+   "crop_id": "coffee",
+   "name_en": "Cercospora leaf spot (brown eye spot)",
+   "pathogen": "Cercospora coffeicola",
+   "cause_type": "fungal",
+   "urgency": 1,
+   "is_curable": 1,
+   "see_expert": 0,
+   "summary_en": "Fungus that is worst on stressed or poorly fed trees and in strong sun. Can also spot the berries.",
+   "why_en": "Round brown spots with a light grey centre and a yellow ring, like an eye.",
+   "content_status": "draft",
+   "source": "UH CTAHR PD-41 (to adapt)"
+  },
+  {
+   "disease_id": "coffee_leaf_miner",
+   "crop_id": "coffee",
+   "name_en": "Coffee leaf miner",
+   "pathogen": "Leucoptera spp.",
+   "cause_type": "pest",
+   "urgency": 1,
+   "is_curable": 1,
+   "see_expert": 0,
+   "summary_en": "Small moth larvae that tunnel inside the leaf. Heavy attack makes leaves fall early.",
+   "why_en": "Brown irregular dry patches where the leaf surface peels like thin paper.",
+   "content_status": "draft",
+   "source": "Regional reference pending"
   },
   {
    "disease_id": "maize_common_rust",
@@ -383,6 +411,48 @@
    "sort_order": 2,
    "plant_part": "leaf",
    "text_en": "Spots join together and leaves dry out"
+  },
+  {
+   "symptom_id": 18,
+   "disease_id": "coffee_cercospora",
+   "sort_order": 1,
+   "plant_part": "leaf",
+   "text_en": "Round brown spots with a pale grey centre"
+  },
+  {
+   "symptom_id": 19,
+   "disease_id": "coffee_cercospora",
+   "sort_order": 2,
+   "plant_part": "leaf",
+   "text_en": "Yellow ring around each spot"
+  },
+  {
+   "symptom_id": 20,
+   "disease_id": "coffee_cercospora",
+   "sort_order": 3,
+   "plant_part": "fruit",
+   "text_en": "Dark sunken patches on berries"
+  },
+  {
+   "symptom_id": 21,
+   "disease_id": "coffee_leaf_miner",
+   "sort_order": 1,
+   "plant_part": "leaf",
+   "text_en": "Brown dry blotches on the top of the leaf"
+  },
+  {
+   "symptom_id": 22,
+   "disease_id": "coffee_leaf_miner",
+   "sort_order": 2,
+   "plant_part": "leaf",
+   "text_en": "Thin leaf skin over the blotch peels off; tiny larvae may be inside"
+  },
+  {
+   "symptom_id": 23,
+   "disease_id": "coffee_leaf_miner",
+   "sort_order": 3,
+   "plant_part": "whole_plant",
+   "text_en": "Many leaves falling in the dry season"
   }
  ],
  "advice": [
@@ -592,6 +662,60 @@
    "sort_order": 1,
    "text_en": "Take a new photo: one leaf, close up, in daylight, not blurry.",
    "safety_note": null
+  },
+  {
+   "advice_id": 24,
+   "disease_id": "coffee_cercospora",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Check whether the trees look weak or yellow. Feed them and water in dry spells.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 25,
+   "disease_id": "coffee_cercospora",
+   "kind": "treatment",
+   "method": "chemical",
+   "sort_order": 1,
+   "text_en": "If spots spread to berries, ask your agriculture officer about a fungicide approved for coffee.",
+   "safety_note": "Follow the label for dose and days before harvest. Wear gloves and a mask."
+  },
+  {
+   "advice_id": 26,
+   "disease_id": "coffee_cercospora",
+   "kind": "prevention",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Keep some shade over the coffee and fertilise regularly. Strong, well fed trees resist it.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 27,
+   "disease_id": "coffee_leaf_miner",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Pick and destroy the worst mined leaves. Count how many leaves per branch are affected.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 28,
+   "disease_id": "coffee_leaf_miner",
+   "kind": "treatment",
+   "method": "biological",
+   "sort_order": 1,
+   "text_en": "Wasps and other natural enemies often control the miner. Avoid broad spectrum sprays that kill them.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 29,
+   "disease_id": "coffee_leaf_miner",
+   "kind": "prevention",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Keep moderate shade and remove weeds. Ask your agriculture officer before using any insecticide.",
+   "safety_note": null
   }
  ],
  "followup_questions": [
@@ -618,6 +742,22 @@
    "text_en": "Are the youngest shoot tips turning black and dying?",
    "yes_weight": 2.0,
    "no_weight": 0.6
+  },
+  {
+   "question_id": "q_coffee_eye_spot",
+   "crop_id": "coffee",
+   "disease_id": "coffee_cercospora",
+   "text_en": "Do the spots look like an eye: brown with a pale grey centre?",
+   "yes_weight": 2.0,
+   "no_weight": 0.6
+  },
+  {
+   "question_id": "q_coffee_peeling",
+   "crop_id": "coffee",
+   "disease_id": "coffee_leaf_miner",
+   "text_en": "Does the thin top skin of the brown patch peel off?",
+   "yes_weight": 2.2,
+   "no_weight": 0.5
   },
   {
    "question_id": "q_maize_powder",
@@ -755,6 +895,38 @@
    "field": "name",
    "lang": "pa",
    "text": "ਕੌਫੀ ਦੀ ਕੁੰਗੀ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_cercospora",
+   "field": "name",
+   "lang": "hi",
+   "text": "सर्कोस्पोरा पत्ती धब्बा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_leaf_miner",
+   "field": "name",
+   "lang": "hi",
+   "text": "पत्ती सुरंगक कीट",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_phoma",
+   "field": "name",
+   "lang": "hi",
+   "text": "फोमा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_healthy",
+   "field": "name",
+   "lang": "hi",
+   "text": "स्वस्थ",
    "review_status": "unverified"
   },
   {
@@ -1068,6 +1240,56 @@
    "source": "coffee_uganda",
    "raw_label": "Coffee Phoma",
    "disease_id": "coffee_phoma"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Cerscospora",
+   "disease_id": "coffee_cercospora"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Cercospora",
+   "disease_id": "coffee_cercospora"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Leaf rust",
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Leaf_rust",
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Rust",
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Phoma",
+   "disease_id": "coffee_phoma"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Forma",
+   "disease_id": "coffee_phoma"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Healthy",
+   "disease_id": "coffee_healthy"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Miner",
+   "disease_id": "coffee_leaf_miner"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Leaf miner",
+   "disease_id": "coffee_leaf_miner"
   }
  ],
  "model_classes": [
@@ -1164,6 +1386,71 @@
   {
    "model_version": "v0.2b",
    "class_index": 7,
+   "disease_id": "unknown"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 0,
+   "disease_id": "bean_angular_leaf_spot"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 1,
+   "disease_id": "bean_healthy"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 2,
+   "disease_id": "bean_rust"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 3,
+   "disease_id": "coffee_cercospora"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 4,
+   "disease_id": "coffee_healthy"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 5,
+   "disease_id": "coffee_leaf_miner"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 6,
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 7,
+   "disease_id": "coffee_phoma"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 8,
+   "disease_id": "maize_common_rust"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 9,
+   "disease_id": "maize_gray_leaf_spot"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 10,
+   "disease_id": "maize_healthy"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 11,
+   "disease_id": "maize_northern_leaf_blight"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 12,
    "disease_id": "unknown"
   }
  ]
