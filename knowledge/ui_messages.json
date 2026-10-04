@@ -1,0 +1,46 @@
+{
+  "unknown_input": {
+    "en": "The app cannot reliably identify a supported coffee-leaf condition in this image. Try a clearer coffee-leaf photo or ask a local adviser.",
+    "hi": "ऐप इस तस्वीर में समर्थित कॉफी-पत्ती की स्थिति को भरोसे से पहचान नहीं पाया। पत्ती की साफ तस्वीर लें या स्थानीय सलाहकार से पूछें।"
+  },
+  "low_confidence": {
+    "en": "The result is uncertain. Take a clearer photo or ask a local adviser; no disease-specific advice is shown.",
+    "hi": "नतीजा निश्चित नहीं है। साफ तस्वीर लें या स्थानीय सलाहकार से पूछें। रोग-विशेष की सलाह नहीं दिखाई जा रही है।"
+  },
+  "close_scores": {
+    "en": "The app cannot clearly distinguish between possible results. Ask a local adviser to check the leaf.",
+    "hi": "ऐप संभावित नतीजों के बीच स्पष्ट अंतर नहीं कर पा रहा है। स्थानीय सलाहकार से पत्ती की जाँच कराएँ।"
+  },
+  "no_approved_advice": {
+    "en": "Human-reviewed advice is not available for this result. Ask a local coffee adviser before deciding what to do.",
+    "hi": "इस नतीजे के लिए मानव द्वारा जाँची गई सलाह उपलब्ध नहीं है। आगे क्या करना है, यह तय करने से पहले स्थानीय कॉफी सलाहकार से पूछें।"
+  },
+  "advice_language_unavailable": {
+    "en": "Reviewed advice is not available in the requested language. No advice from another language has been substituted.",
+    "hi": "माँगी गई भाषा में जाँची गई सलाह उपलब्ध नहीं है। उसकी जगह दूसरी भाषा की सलाह नहीं दिखाई गई है।"
+  },
+  "unreadable_image": {
+    "en": "This image could not be read. Take another photo or choose a valid JPEG, PNG or single-frame WebP image.",
+    "hi": "यह तस्वीर पढ़ी नहीं जा सकी। नई तस्वीर लें या सही JPEG, PNG अथवा एकल-फ्रेम WebP तस्वीर चुनें।"
+  },
+  "model_unavailable": {
+    "en": "Image analysis is unavailable. No diagnosis was produced. Try again when the model is available.",
+    "hi": "तस्वीर का विश्लेषण उपलब्ध नहीं है। कोई रोग-निदान नहीं किया गया। मॉडल उपलब्ध होने पर फिर कोशिश करें।"
+  },
+  "pending_sync": {
+    "en": "Saved locally and waiting to sync. The app has not confirmed an upload yet.",
+    "hi": "स्थानीय रूप से सहेजा गया है और सिंक होने की प्रतीक्षा है। ऐप ने अभी अपलोड की पुष्टि नहीं की है।"
+  },
+  "mock_result": {
+    "en": "Demonstration result only. No trained disease model analyzed this photo.",
+    "hi": "यह केवल प्रदर्शन का नतीजा है। किसी प्रशिक्षित रोग मॉडल ने इस तस्वीर का विश्लेषण नहीं किया है।"
+  },
+  "unsupported_language": {
+    "en": "Choose English (en) or Hindi (hi). The requested language is not supported.",
+    "hi": "अंग्रेज़ी (en) या हिंदी (hi) चुनें। माँगी गई भाषा समर्थित नहीं है।"
+  },
+  "request_failed": {
+    "en": "The request could not be completed. Check the supplied information and try again.",
+    "hi": "अनुरोध पूरा नहीं हो सका। दी गई जानकारी जाँचें और फिर कोशिश करें।"
+  }
+}

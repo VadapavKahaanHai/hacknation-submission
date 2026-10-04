@@ -140,6 +140,25 @@ class DatabaseWorkflowTests(unittest.TestCase):
             self.build()
         self.assertFalse(self.database.exists())
 
+    def test_missing_source_mapping_repair_and_conflict(self):
+        self.build()
+        db=app.connect(self.database)
+        try:
+            inventory=prep.read_csv(self.prepared/'inventory.csv')
+            with db:
+                db.execute("DELETE FROM label_map WHERE local_folder_name='Healthy'")
+            with db:
+                app.sync_label_maps(db,inventory)
+            self.assertEqual(db.execute("SELECT class_id FROM label_map WHERE local_folder_name='Healthy'").fetchone()[0],5)
+            with db:
+                db.execute("UPDATE label_map SET class_id=1 WHERE local_folder_name='Healthy'")
+            with self.assertRaisesRegex(ValueError,'conflicts'):
+                with db:
+                    app.sync_label_maps(db,inventory)
+            self.assertEqual(db.execute('SELECT count(*) FROM images').fetchone()[0],5)
+        finally:
+            db.close()
+
 
 if __name__ == '__main__':
     unittest.main()

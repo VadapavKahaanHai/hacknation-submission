@@ -14,10 +14,7 @@ import numpy as np
 from PIL import Image, ImageOps, UnidentifiedImageError
 from scipy.fft import dctn
 
-CLASSES = {'Rust': 1, 'Cercospora': 2, 'Phoma': 3, 'Miner': 4, 'Healthy': 5, 'unknown': 6}
-ALIASES = {'rust': 'Rust', 'leaf rust': 'Rust', 'cercospora': 'Cercospora',
-           'cerscospora': 'Cercospora', 'cescospora': 'Cercospora',
-           'phoma': 'Phoma', 'miner': 'Miner', 'healthy': 'Healthy', 'unknown': 'unknown'}
+from class_mapping import CLASS_IDS as CLASSES, ALIASES, canonical_label
 DOIS = {'jmuben': '10.17632/t2r6rszp5c.1', 'jmuben2': '10.17632/tgv3zb82nd.1'}
 IMAGE_EXTS = {'.jpg', '.jpeg', '.png', '.bmp', '.webp', '.tif', '.tiff', '.gif'}
 FIELDS = ['source_path', 'dataset_id', 'doi', 'source_class_name', 'label_en', 'class_id',
@@ -151,7 +148,7 @@ def classify(kind, relative):
         if len(parts) < 3 or parts[-3].lower() not in ('train', 'test'):
             raise ValueError('outside_plantdoc_class_tree')
         return 'plantdoc', 'unknown', parts[-2], 'ood_test'
-    label = ALIASES.get(folder.lower())
+    label = canonical_label(folder)
     if label is None or (kind == 'jmuben' and label == 'unknown'):
         raise ValueError('unrecognized_or_missing_class_folder')
     dataset = ('jmuben' if label in ('Rust', 'Cercospora', 'Phoma') else 'jmuben2')

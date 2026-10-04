@@ -1,6 +1,8 @@
 # Offline coffee advisory data workflow
 
 For the next application step, see [runtime query functions and inference API](docs/API.md).
+Corrected class names and bilingual fallback behavior are documented in
+[mappings and fallbacks](docs/MAPPINGS_AND_FALLBACKS.md).
 Start with `python scripts/serve_api.py init --mock`, then follow the token/server
 instructions there. Mock inference is explicitly labelled and uses a separate
 operational database; image-pair review can remain pending while API work proceeds.
@@ -131,6 +133,9 @@ returns an empty list for the supplied drafts. SQLite views do not implement an
 access-control boundary; the application repository must enforce this query path.
 
 ## Data and validation
+
+For sample images, edge cases and English/Hindi UI fixtures, see
+[Demo samples](docs/DEMO_SAMPLES.md). Generate them with `python scripts/prepare_demo.py`.
 
 - Rust/Cercospora/Phoma map to JMuBEN; Healthy/Miner map to JMuBEN2.
 - `Cerscospora` and `Leaf rust` are handled as actual local folder aliases.
