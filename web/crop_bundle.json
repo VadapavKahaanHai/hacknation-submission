@@ -1,0 +1,2105 @@
+{
+ "meta": [
+  {
+   "key": "schema_version",
+   "value": "2"
+  },
+  {
+   "key": "content_version",
+   "value": "0.4.2"
+  },
+  {
+   "key": "cropset",
+   "value": "full"
+  },
+  {
+   "key": "active_model_version",
+   "value": "v0.3"
+  },
+  {
+   "key": "threshold_high",
+   "value": "0.90"
+  },
+  {
+   "key": "threshold_unknown",
+   "value": "0.40"
+  },
+  {
+   "key": "threshold_margin",
+   "value": "0.15"
+  },
+  {
+   "key": "threshold_danger_watch",
+   "value": "0.25"
+  }
+ ],
+ "languages": [
+  {
+   "lang": "en",
+   "name": "English",
+   "script": "Latn",
+   "enabled": 1,
+   "sort_order": 1
+  },
+  {
+   "lang": "hi",
+   "name": "हिन्दी",
+   "script": "Deva",
+   "enabled": 1,
+   "sort_order": 2
+  },
+  {
+   "lang": "pa",
+   "name": "ਪੰਜਾਬੀ",
+   "script": "Guru",
+   "enabled": 1,
+   "sort_order": 3
+  }
+ ],
+ "crops": [
+  {
+   "crop_id": "bean",
+   "name_en": "Bean",
+   "scientific_name": "Phaseolus vulgaris",
+   "icon": "bean.png",
+   "enabled": 1,
+   "sort_order": 1
+  },
+  {
+   "crop_id": "coffee",
+   "name_en": "Coffee",
+   "scientific_name": "Coffea arabica / Coffea canephora",
+   "icon": "coffee.png",
+   "enabled": 1,
+   "sort_order": 2
+  },
+  {
+   "crop_id": "maize",
+   "name_en": "Maize",
+   "scientific_name": "Zea mays",
+   "icon": "maize.png",
+   "enabled": 1,
+   "sort_order": 3
+  }
+ ],
+ "urgency_levels": [
+  {
+   "level": 0,
+   "label_en": "None",
+   "action_en": "No action needed",
+   "color": "#2E7D32"
+  },
+  {
+   "level": 1,
+   "label_en": "Low",
+   "action_en": "Watch the crop, act within 2 weeks",
+   "color": "#9E9D24"
+  },
+  {
+   "level": 2,
+   "label_en": "Medium",
+   "action_en": "Act this week",
+   "color": "#EF6C00"
+  },
+  {
+   "level": 3,
+   "label_en": "High",
+   "action_en": "Act today",
+   "color": "#C62828"
+  }
+ ],
+ "diseases": [
+  {
+   "disease_id": "bean_angular_leaf_spot",
+   "crop_id": "bean",
+   "name_en": "Angular leaf spot",
+   "pathogen": "Pseudocercospora griseola",
+   "cause_type": "fungal",
+   "urgency": 2,
+   "is_curable": 1,
+   "see_expert": 0,
+   "summary_en": "Fungus favoured by warm wet weather; spreads through seed and old crop.",
+   "why_en": "Grey to brown spots with straight edges boxed in by veins.",
+   "content_status": "draft",
+   "source": "CIAT fact sheet (to cite)"
+  },
+  {
+   "disease_id": "bean_rust",
+   "crop_id": "bean",
+   "name_en": "Bean rust",
+   "pathogen": "Uromyces appendiculatus",
+   "cause_type": "fungal",
+   "urgency": 2,
+   "is_curable": 1,
+   "see_expert": 0,
+   "summary_en": "Fungus spread by wind; can make leaves fall early.",
+   "why_en": "Small raised reddish brown powdery spots with a yellow ring.",
+   "content_status": "draft",
+   "source": "CIAT fact sheet (to cite)"
+  },
+  {
+   "disease_id": "bean_healthy",
+   "crop_id": "bean",
+   "name_en": "Healthy bean",
+   "pathogen": null,
+   "cause_type": "none",
+   "urgency": 0,
+   "is_curable": 0,
+   "see_expert": 0,
+   "summary_en": "No disease found on this leaf.",
+   "why_en": "Even green colour, no spots or powder.",
+   "content_status": "draft",
+   "source": "n/a"
+  },
+  {
+   "disease_id": "coffee_leaf_rust",
+   "crop_id": "coffee",
+   "name_en": "Coffee leaf rust",
+   "pathogen": "Hemileia vastatrix",
+   "cause_type": "fungal",
+   "urgency": 2,
+   "is_curable": 1,
+   "see_expert": 0,
+   "summary_en": "Fungus spread by wind and rain splash. Can make the tree drop most of its leaves and lose next season's harvest.",
+   "why_en": "Orange yellow powdery spots on the underside of leaves, pale yellow spots on top.",
+   "content_status": "draft",
+   "source": "Extension fact sheet (to cite)"
+  },
+  {
+   "disease_id": "coffee_phoma",
+   "crop_id": "coffee",
+   "name_en": "Phoma leaf blight",
+   "pathogen": "Phoma spp.",
+   "cause_type": "fungal",
+   "urgency": 2,
+   "is_curable": 1,
+   "see_expert": 0,
+   "summary_en": "Fungus favoured by cold, wet and windy weather, common at high altitude. Kills young leaves and shoot tips.",
+   "why_en": "Dark brown to black patches on young leaves, often starting at the edge or tip.",
+   "content_status": "draft",
+   "source": "Extension fact sheet (to cite)"
+  },
+  {
+   "disease_id": "coffee_healthy",
+   "crop_id": "coffee",
+   "name_en": "Healthy coffee",
+   "pathogen": null,
+   "cause_type": "none",
+   "urgency": 0,
+   "is_curable": 0,
+   "see_expert": 0,
+   "summary_en": "No disease found on this leaf.",
+   "why_en": "Even dark green colour, no spots or powder.",
+   "content_status": "draft",
+   "source": "n/a"
+  },
+  {
+   "disease_id": "coffee_cercospora",
+   "crop_id": "coffee",
+   "name_en": "Cercospora leaf spot (brown eye spot)",
+   "pathogen": "Cercospora coffeicola",
+   "cause_type": "fungal",
+   "urgency": 1,
+   "is_curable": 1,
+   "see_expert": 0,
+   "summary_en": "Fungus that is worst on stressed or poorly fed trees and in strong sun. Can also spot the berries.",
+   "why_en": "Round brown spots with a light grey centre and a yellow ring, like an eye.",
+   "content_status": "draft",
+   "source": "UH CTAHR PD-41 (to adapt)"
+  },
+  {
+   "disease_id": "coffee_leaf_miner",
+   "crop_id": "coffee",
+   "name_en": "Coffee leaf miner",
+   "pathogen": "Leucoptera spp.",
+   "cause_type": "pest",
+   "urgency": 1,
+   "is_curable": 1,
+   "see_expert": 0,
+   "summary_en": "Small moth larvae that tunnel inside the leaf. Heavy attack makes leaves fall early.",
+   "why_en": "Brown irregular dry patches where the leaf surface peels like thin paper.",
+   "content_status": "draft",
+   "source": "Regional reference pending"
+  },
+  {
+   "disease_id": "maize_common_rust",
+   "crop_id": "maize",
+   "name_en": "Common rust",
+   "pathogen": "Puccinia sorghi",
+   "cause_type": "fungal",
+   "urgency": 1,
+   "is_curable": 1,
+   "see_expert": 0,
+   "summary_en": "Fungus spread by wind. Usually not serious on strong plants, but can reduce yield when many leaves are covered.",
+   "why_en": "Small cinnamon brown powdery bumps on both sides of the leaf.",
+   "content_status": "draft",
+   "source": "CIMMYT fact sheet (to cite)"
+  },
+  {
+   "disease_id": "maize_gray_leaf_spot",
+   "crop_id": "maize",
+   "name_en": "Gray leaf spot",
+   "pathogen": "Cercospora zeae-maydis",
+   "cause_type": "fungal",
+   "urgency": 2,
+   "is_curable": 1,
+   "see_expert": 0,
+   "summary_en": "Fungus that survives in old maize leaves left in the field. Worst in warm, humid weather.",
+   "why_en": "Long narrow grey or tan spots with straight sides, running between the leaf veins.",
+   "content_status": "draft",
+   "source": "CIMMYT fact sheet (to cite)"
+  },
+  {
+   "disease_id": "maize_northern_leaf_blight",
+   "crop_id": "maize",
+   "name_en": "Northern leaf blight",
+   "pathogen": "Exserohilum turcicum",
+   "cause_type": "fungal",
+   "urgency": 2,
+   "is_curable": 1,
+   "see_expert": 0,
+   "summary_en": "Fungus favoured by cool, wet weather. Can dry out the leaves early and reduce yield.",
+   "why_en": "Long cigar shaped grey green or tan spots, often longer than a finger.",
+   "content_status": "draft",
+   "source": "CIMMYT fact sheet (to cite)"
+  },
+  {
+   "disease_id": "maize_healthy",
+   "crop_id": "maize",
+   "name_en": "Healthy maize",
+   "pathogen": null,
+   "cause_type": "none",
+   "urgency": 0,
+   "is_curable": 0,
+   "see_expert": 0,
+   "summary_en": "No disease found on this leaf.",
+   "why_en": "Even green colour, no spots, streaks or powder.",
+   "content_status": "draft",
+   "source": "n/a"
+  },
+  {
+   "disease_id": "unknown",
+   "crop_id": null,
+   "name_en": "Not recognised",
+   "pathogen": null,
+   "cause_type": "unknown",
+   "urgency": 0,
+   "is_curable": 0,
+   "see_expert": 1,
+   "summary_en": "The app could not recognise this photo.",
+   "why_en": "The photo did not match any leaf the app knows.",
+   "content_status": "draft",
+   "source": "n/a"
+  }
+ ],
+ "symptoms": [
+  {
+   "symptom_id": 1,
+   "disease_id": "bean_angular_leaf_spot",
+   "sort_order": 1,
+   "plant_part": "leaf",
+   "text_en": "Grey brown spots boxed in by veins"
+  },
+  {
+   "symptom_id": 2,
+   "disease_id": "bean_angular_leaf_spot",
+   "sort_order": 2,
+   "plant_part": "pod",
+   "text_en": "Reddish brown spots on pods"
+  },
+  {
+   "symptom_id": 3,
+   "disease_id": "bean_rust",
+   "sort_order": 1,
+   "plant_part": "leaf",
+   "text_en": "Reddish brown powdery spots under the leaf"
+  },
+  {
+   "symptom_id": 4,
+   "disease_id": "bean_rust",
+   "sort_order": 2,
+   "plant_part": "leaf",
+   "text_en": "Leaves turn yellow and fall early"
+  },
+  {
+   "symptom_id": 5,
+   "disease_id": "coffee_leaf_rust",
+   "sort_order": 1,
+   "plant_part": "leaf",
+   "text_en": "Orange yellow powder on the underside of leaves"
+  },
+  {
+   "symptom_id": 6,
+   "disease_id": "coffee_leaf_rust",
+   "sort_order": 2,
+   "plant_part": "leaf",
+   "text_en": "Pale yellow spots on the top of the leaf"
+  },
+  {
+   "symptom_id": 7,
+   "disease_id": "coffee_leaf_rust",
+   "sort_order": 3,
+   "plant_part": "whole_plant",
+   "text_en": "Many leaves falling early"
+  },
+  {
+   "symptom_id": 8,
+   "disease_id": "coffee_phoma",
+   "sort_order": 1,
+   "plant_part": "leaf",
+   "text_en": "Dark brown to black patches on young leaves"
+  },
+  {
+   "symptom_id": 9,
+   "disease_id": "coffee_phoma",
+   "sort_order": 2,
+   "plant_part": "leaf",
+   "text_en": "Young leaves curled or torn"
+  },
+  {
+   "symptom_id": 10,
+   "disease_id": "coffee_phoma",
+   "sort_order": 3,
+   "plant_part": "stem",
+   "text_en": "Shoot tips turning black and dying back"
+  },
+  {
+   "symptom_id": 11,
+   "disease_id": "maize_common_rust",
+   "sort_order": 1,
+   "plant_part": "leaf",
+   "text_en": "Small oval brown powdery bumps on both sides of the leaf"
+  },
+  {
+   "symptom_id": 12,
+   "disease_id": "maize_common_rust",
+   "sort_order": 2,
+   "plant_part": "leaf",
+   "text_en": "Brown powder rubs off on your finger"
+  },
+  {
+   "symptom_id": 13,
+   "disease_id": "maize_gray_leaf_spot",
+   "sort_order": 1,
+   "plant_part": "leaf",
+   "text_en": "Grey to tan rectangular spots with straight edges"
+  },
+  {
+   "symptom_id": 14,
+   "disease_id": "maize_gray_leaf_spot",
+   "sort_order": 2,
+   "plant_part": "leaf",
+   "text_en": "Spots run along the leaf between the veins"
+  },
+  {
+   "symptom_id": 15,
+   "disease_id": "maize_gray_leaf_spot",
+   "sort_order": 3,
+   "plant_part": "whole_plant",
+   "text_en": "Lower leaves die first, then upper leaves"
+  },
+  {
+   "symptom_id": 16,
+   "disease_id": "maize_northern_leaf_blight",
+   "sort_order": 1,
+   "plant_part": "leaf",
+   "text_en": "Long cigar shaped grey green to tan spots"
+  },
+  {
+   "symptom_id": 17,
+   "disease_id": "maize_northern_leaf_blight",
+   "sort_order": 2,
+   "plant_part": "leaf",
+   "text_en": "Spots join together and leaves dry out"
+  },
+  {
+   "symptom_id": 18,
+   "disease_id": "coffee_cercospora",
+   "sort_order": 1,
+   "plant_part": "leaf",
+   "text_en": "Round brown spots with a pale grey centre"
+  },
+  {
+   "symptom_id": 19,
+   "disease_id": "coffee_cercospora",
+   "sort_order": 2,
+   "plant_part": "leaf",
+   "text_en": "Yellow ring around each spot"
+  },
+  {
+   "symptom_id": 20,
+   "disease_id": "coffee_cercospora",
+   "sort_order": 3,
+   "plant_part": "fruit",
+   "text_en": "Dark sunken patches on berries"
+  },
+  {
+   "symptom_id": 21,
+   "disease_id": "coffee_leaf_miner",
+   "sort_order": 1,
+   "plant_part": "leaf",
+   "text_en": "Brown dry blotches on the top of the leaf"
+  },
+  {
+   "symptom_id": 22,
+   "disease_id": "coffee_leaf_miner",
+   "sort_order": 2,
+   "plant_part": "leaf",
+   "text_en": "Thin leaf skin over the blotch peels off; tiny larvae may be inside"
+  },
+  {
+   "symptom_id": 23,
+   "disease_id": "coffee_leaf_miner",
+   "sort_order": 3,
+   "plant_part": "whole_plant",
+   "text_en": "Many leaves falling in the dry season"
+  }
+ ],
+ "advice": [
+  {
+   "advice_id": 1,
+   "disease_id": "bean_angular_leaf_spot",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Remove badly spotted leaves. Do not touch plants when they are wet.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 2,
+   "disease_id": "bean_angular_leaf_spot",
+   "kind": "treatment",
+   "method": "chemical",
+   "sort_order": 1,
+   "text_en": "If it keeps spreading, use a fungicide approved for beans in your area.",
+   "safety_note": "Follow the label for dose and days before harvest. Wear gloves and a mask. Ask an agriculture officer which product is approved."
+  },
+  {
+   "advice_id": 3,
+   "disease_id": "bean_angular_leaf_spot",
+   "kind": "prevention",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Use clean seed and do not plant beans in the same place next season.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 4,
+   "disease_id": "bean_rust",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Remove leaves with the most rust spots.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 5,
+   "disease_id": "bean_rust",
+   "kind": "treatment",
+   "method": "chemical",
+   "sort_order": 1,
+   "text_en": "Use a fungicide approved for bean rust when spots first appear.",
+   "safety_note": "Follow the label for dose and days before harvest. Wear gloves and a mask."
+  },
+  {
+   "advice_id": 6,
+   "disease_id": "bean_rust",
+   "kind": "prevention",
+   "method": "varietal",
+   "sort_order": 1,
+   "text_en": "Plant rust resistant varieties next season.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 7,
+   "disease_id": "coffee_leaf_rust",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Prune crowded branches so air and light reach the leaves. Collect and bury badly infected fallen leaves.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 8,
+   "disease_id": "coffee_leaf_rust",
+   "kind": "treatment",
+   "method": "chemical",
+   "sort_order": 1,
+   "text_en": "Use a fungicide approved for coffee leaf rust in your area. Ask your agriculture officer which one.",
+   "safety_note": "Follow the label for dose and days before harvest. Wear gloves and a mask."
+  },
+  {
+   "advice_id": 9,
+   "disease_id": "coffee_leaf_rust",
+   "kind": "prevention",
+   "method": "varietal",
+   "sort_order": 1,
+   "text_en": "Ask for rust resistant coffee varieties when you replant.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 10,
+   "disease_id": "coffee_leaf_rust",
+   "kind": "prevention",
+   "method": "cultural",
+   "sort_order": 2,
+   "text_en": "Feed the trees well and keep shade moderate. Weak trees suffer most.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 11,
+   "disease_id": "coffee_phoma",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Cut off dead, blackened shoot tips and burn or bury them.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 12,
+   "disease_id": "coffee_phoma",
+   "kind": "treatment",
+   "method": "chemical",
+   "sort_order": 1,
+   "text_en": "If new shoots keep dying, use a fungicide approved for coffee in your area.",
+   "safety_note": "Follow the label for dose and days before harvest. Wear gloves and a mask."
+  },
+  {
+   "advice_id": 13,
+   "disease_id": "coffee_phoma",
+   "kind": "prevention",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Plant windbreak trees or hedges to protect coffee from cold wind.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 14,
+   "disease_id": "maize_common_rust",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Count how many leaves are covered. If only a few, keep watching.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 15,
+   "disease_id": "maize_common_rust",
+   "kind": "treatment",
+   "method": "chemical",
+   "sort_order": 1,
+   "text_en": "If most leaves are covered before the tassels appear, ask your agriculture officer whether a fungicide is worth it.",
+   "safety_note": "If you spray, follow the label for dose and days before harvest. Wear gloves and a mask."
+  },
+  {
+   "advice_id": 16,
+   "disease_id": "maize_common_rust",
+   "kind": "prevention",
+   "method": "varietal",
+   "sort_order": 1,
+   "text_en": "Plant rust resistant maize varieties next season.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 17,
+   "disease_id": "maize_gray_leaf_spot",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Walk the field and check whether the spots are reaching the leaves near the cob.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 18,
+   "disease_id": "maize_gray_leaf_spot",
+   "kind": "treatment",
+   "method": "chemical",
+   "sort_order": 1,
+   "text_en": "If spots reach the leaves near the cob before the grain fills, ask about a fungicide approved for maize.",
+   "safety_note": "Follow the label for dose and days before harvest. Wear gloves and a mask."
+  },
+  {
+   "advice_id": 19,
+   "disease_id": "maize_gray_leaf_spot",
+   "kind": "prevention",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Rotate with beans or another crop, and remove or bury old maize stalks after harvest.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 20,
+   "disease_id": "maize_northern_leaf_blight",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Check the leaves near the cob. If they have spots, act this week.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 21,
+   "disease_id": "maize_northern_leaf_blight",
+   "kind": "treatment",
+   "method": "chemical",
+   "sort_order": 1,
+   "text_en": "Ask your agriculture officer about a fungicide approved for maize.",
+   "safety_note": "Follow the label for dose and days before harvest. Wear gloves and a mask."
+  },
+  {
+   "advice_id": 22,
+   "disease_id": "maize_northern_leaf_blight",
+   "kind": "prevention",
+   "method": "varietal",
+   "sort_order": 1,
+   "text_en": "Plant resistant varieties and rotate with beans.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 23,
+   "disease_id": "unknown",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Take a new photo: one leaf, close up, in daylight, not blurry.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 24,
+   "disease_id": "coffee_cercospora",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Check whether the trees look weak or yellow. Feed them and water in dry spells.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 25,
+   "disease_id": "coffee_cercospora",
+   "kind": "treatment",
+   "method": "chemical",
+   "sort_order": 1,
+   "text_en": "If spots spread to berries, ask your agriculture officer about a fungicide approved for coffee.",
+   "safety_note": "Follow the label for dose and days before harvest. Wear gloves and a mask."
+  },
+  {
+   "advice_id": 26,
+   "disease_id": "coffee_cercospora",
+   "kind": "prevention",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Keep some shade over the coffee and fertilise regularly. Strong, well fed trees resist it.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 27,
+   "disease_id": "coffee_leaf_miner",
+   "kind": "today",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Pick and destroy the worst mined leaves. Count how many leaves per branch are affected.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 28,
+   "disease_id": "coffee_leaf_miner",
+   "kind": "treatment",
+   "method": "biological",
+   "sort_order": 1,
+   "text_en": "Wasps and other natural enemies often control the miner. Avoid broad spectrum sprays that kill them.",
+   "safety_note": null
+  },
+  {
+   "advice_id": 29,
+   "disease_id": "coffee_leaf_miner",
+   "kind": "prevention",
+   "method": "cultural",
+   "sort_order": 1,
+   "text_en": "Keep moderate shade and remove weeds. Ask your agriculture officer before using any insecticide.",
+   "safety_note": null
+  }
+ ],
+ "followup_questions": [
+  {
+   "question_id": "q_bean_powder",
+   "crop_id": "bean",
+   "disease_id": "bean_rust",
+   "text_en": "Does a reddish powder come off on your finger when you rub a spot?",
+   "yes_weight": 2.0,
+   "no_weight": 0.5
+  },
+  {
+   "question_id": "q_coffee_orange_powder",
+   "crop_id": "coffee",
+   "disease_id": "coffee_leaf_rust",
+   "text_en": "Is there orange or yellow powder under the spots?",
+   "yes_weight": 2.0,
+   "no_weight": 0.5
+  },
+  {
+   "question_id": "q_coffee_tips_dying",
+   "crop_id": "coffee",
+   "disease_id": "coffee_phoma",
+   "text_en": "Are the youngest shoot tips turning black and dying?",
+   "yes_weight": 2.0,
+   "no_weight": 0.6
+  },
+  {
+   "question_id": "q_coffee_eye_spot",
+   "crop_id": "coffee",
+   "disease_id": "coffee_cercospora",
+   "text_en": "Do the spots look like an eye: brown with a pale grey centre?",
+   "yes_weight": 2.0,
+   "no_weight": 0.6
+  },
+  {
+   "question_id": "q_coffee_peeling",
+   "crop_id": "coffee",
+   "disease_id": "coffee_leaf_miner",
+   "text_en": "Does the thin top skin of the brown patch peel off?",
+   "yes_weight": 2.2,
+   "no_weight": 0.5
+  },
+  {
+   "question_id": "q_maize_powder",
+   "crop_id": "maize",
+   "disease_id": "maize_common_rust",
+   "text_en": "Does brown powder rub off on your finger?",
+   "yes_weight": 2.0,
+   "no_weight": 0.5
+  },
+  {
+   "question_id": "q_maize_cigar",
+   "crop_id": "maize",
+   "disease_id": "maize_northern_leaf_blight",
+   "text_en": "Are the spots long like a cigar, longer than your finger?",
+   "yes_weight": 2.0,
+   "no_weight": 0.6
+  },
+  {
+   "question_id": "q_maize_rectangles",
+   "crop_id": "maize",
+   "disease_id": "maize_gray_leaf_spot",
+   "text_en": "Are the spots narrow with straight sides, between the leaf veins?",
+   "yes_weight": 1.8,
+   "no_weight": 0.6
+  }
+ ],
+ "translations": [
+  {
+   "entity_type": "crop",
+   "entity_id": "bean",
+   "field": "name",
+   "lang": "hi",
+   "text": "सेम (बीन्स)",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "crop",
+   "entity_id": "coffee",
+   "field": "name",
+   "lang": "hi",
+   "text": "कॉफ़ी",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "crop",
+   "entity_id": "maize",
+   "field": "name",
+   "lang": "hi",
+   "text": "मक्का",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "crop",
+   "entity_id": "bean",
+   "field": "name",
+   "lang": "pa",
+   "text": "ਫਲੀਆਂ (ਬੀਨਜ਼)",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "crop",
+   "entity_id": "coffee",
+   "field": "name",
+   "lang": "pa",
+   "text": "ਕੌਫੀ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "crop",
+   "entity_id": "maize",
+   "field": "name",
+   "lang": "pa",
+   "text": "ਮੱਕੀ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "urgency",
+   "entity_id": "0",
+   "field": "label",
+   "lang": "hi",
+   "text": "कोई खतरा नहीं",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "urgency",
+   "entity_id": "1",
+   "field": "label",
+   "lang": "hi",
+   "text": "कम",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "urgency",
+   "entity_id": "2",
+   "field": "label",
+   "lang": "hi",
+   "text": "मध्यम",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "urgency",
+   "entity_id": "3",
+   "field": "label",
+   "lang": "hi",
+   "text": "गंभीर",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "urgency",
+   "entity_id": "2",
+   "field": "action",
+   "lang": "hi",
+   "text": "इसी हफ़्ते कदम उठाएँ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "urgency",
+   "entity_id": "3",
+   "field": "action",
+   "lang": "hi",
+   "text": "आज ही कदम उठाएँ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_leaf_rust",
+   "field": "name",
+   "lang": "hi",
+   "text": "कॉफ़ी का रतुआ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_leaf_rust",
+   "field": "name",
+   "lang": "pa",
+   "text": "ਕੌਫੀ ਦੀ ਕੁੰਗੀ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_cercospora",
+   "field": "name",
+   "lang": "hi",
+   "text": "सर्कोस्पोरा पत्ती धब्बा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_leaf_miner",
+   "field": "name",
+   "lang": "hi",
+   "text": "पत्ती सुरंगक कीट",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_phoma",
+   "field": "name",
+   "lang": "hi",
+   "text": "फोमा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_healthy",
+   "field": "name",
+   "lang": "hi",
+   "text": "स्वस्थ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "bean_angular_leaf_spot",
+   "field": "name",
+   "lang": "hi",
+   "text": "कोणीय पत्ती धब्बा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "bean_rust",
+   "field": "name",
+   "lang": "hi",
+   "text": "सेम का रतुआ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "bean_healthy",
+   "field": "name",
+   "lang": "hi",
+   "text": "स्वस्थ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_common_rust",
+   "field": "name",
+   "lang": "hi",
+   "text": "मक्का का रतुआ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_gray_leaf_spot",
+   "field": "name",
+   "lang": "hi",
+   "text": "धूसर पत्ती धब्बा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_northern_leaf_blight",
+   "field": "name",
+   "lang": "hi",
+   "text": "उत्तरी पत्ती झुलसा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_healthy",
+   "field": "name",
+   "lang": "hi",
+   "text": "स्वस्थ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "unknown",
+   "field": "name",
+   "lang": "hi",
+   "text": "पहचान नहीं हुई",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_leaf_rust",
+   "field": "summary",
+   "lang": "hi",
+   "text": "यह फफूंद हवा और बारिश की छींटों से फैलती है। यह पेड़ की ज़्यादातर पत्तियाँ गिरा सकती है और अगले मौसम की फ़सल घटा सकती है।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_leaf_rust",
+   "field": "why",
+   "lang": "hi",
+   "text": "पत्तियों के नीचे नारंगी पीला चूर्ण, और ऊपर हल्के पीले धब्बे।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "5",
+   "field": "text",
+   "lang": "hi",
+   "text": "पत्तियों के नीचे नारंगी पीला चूर्ण",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "6",
+   "field": "text",
+   "lang": "hi",
+   "text": "पत्ती के ऊपर हल्के पीले धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "7",
+   "field": "text",
+   "lang": "hi",
+   "text": "बहुत सी पत्तियाँ जल्दी गिरना",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "7",
+   "field": "text",
+   "lang": "hi",
+   "text": "घनी शाखाओं की छँटाई करें ताकि पत्तियों तक हवा और रोशनी पहुँचे। बहुत बीमार गिरी हुई पत्तियाँ इकट्ठा करके गाड़ दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "8",
+   "field": "text",
+   "lang": "hi",
+   "text": "अपने क्षेत्र में कॉफ़ी रतुआ के लिए स्वीकृत फफूंदनाशक का प्रयोग करें। अपने कृषि अधिकारी से पूछें कि कौन सा।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "8",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "9",
+   "field": "text",
+   "lang": "hi",
+   "text": "दोबारा पौधे लगाते समय रतुआ प्रतिरोधी कॉफ़ी किस्में माँगें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "10",
+   "field": "text",
+   "lang": "hi",
+   "text": "पेड़ों को अच्छा पोषण दें और छाया संतुलित रखें। कमज़ोर पेड़ ज़्यादा प्रभावित होते हैं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_coffee_orange_powder",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या धब्बों के नीचे नारंगी या पीला चूर्ण है?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "ui",
+   "entity_id": "disclaimer",
+   "field": "text",
+   "lang": "hi",
+   "text": "यह कंप्यूटर का अनुमान है, जाँच नहीं। कुछ भी छिड़कने से पहले अपने कृषि अधिकारी या कृषि विक्रेता से पूछें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "ui",
+   "entity_id": "retake",
+   "field": "text",
+   "lang": "hi",
+   "text": "हम यह फ़ोटो नहीं पढ़ पाए। एक पत्ती की, पास से, दिन की रोशनी में नई फ़ोटो लें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "ui",
+   "entity_id": "uncertain",
+   "field": "text",
+   "lang": "hi",
+   "text": "हमें पक्का नहीं पता। कृपया एक या दो सवालों के जवाब दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "ui",
+   "entity_id": "could_be",
+   "field": "text",
+   "lang": "hi",
+   "text": "यह इनमें से कोई एक हो सकता है।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "ui",
+   "entity_id": "see_expert",
+   "field": "text",
+   "lang": "hi",
+   "text": "जल्द ही यह पत्ती किसी कृषि अधिकारी को दिखाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "1",
+   "field": "text",
+   "lang": "hi",
+   "text": "बहुत धब्बेदार पत्तियाँ हटा दें। गीले पौधों को न छुएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "2",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगर यह फैलता रहे, तो अपने क्षेत्र में सेम के लिए स्वीकृत फफूंदनाशक का प्रयोग करें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "3",
+   "field": "text",
+   "lang": "hi",
+   "text": "साफ़ बीज इस्तेमाल करें और अगले मौसम में उसी जगह सेम न लगाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "4",
+   "field": "text",
+   "lang": "hi",
+   "text": "सबसे ज़्यादा रतुआ धब्बों वाली पत्तियाँ हटा दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "5",
+   "field": "text",
+   "lang": "hi",
+   "text": "धब्बे दिखते ही सेम के रतुआ के लिए स्वीकृत फफूंदनाशक का प्रयोग करें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "6",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगले मौसम में रतुआ प्रतिरोधी किस्में लगाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "11",
+   "field": "text",
+   "lang": "hi",
+   "text": "मरी हुई, काली पड़ी टहनियों के सिरे काटकर जला दें या गाड़ दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "12",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगर नई टहनियाँ मरती रहें, तो अपने क्षेत्र में कॉफ़ी के लिए स्वीकृत फफूंदनाशक का प्रयोग करें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "13",
+   "field": "text",
+   "lang": "hi",
+   "text": "कॉफ़ी को ठंडी हवा से बचाने के लिए हवा रोकने वाले पेड़ या बाड़ लगाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "14",
+   "field": "text",
+   "lang": "hi",
+   "text": "गिनें कि कितनी पत्तियाँ ढकी हैं। अगर कुछ ही हैं, तो नज़र रखते रहें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "15",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगर झंडा (नर फूल) निकलने से पहले ज़्यादातर पत्तियाँ ढक जाएँ, तो कृषि अधिकारी से पूछें कि क्या फफूंदनाशक लगाना ठीक रहेगा।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "16",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगले मौसम में रतुआ प्रतिरोधी मक्का किस्में लगाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "17",
+   "field": "text",
+   "lang": "hi",
+   "text": "खेत में घूमकर देखें कि क्या धब्बे भुट्टे के पास की पत्तियों तक पहुँच रहे हैं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "18",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगर दाना भरने से पहले धब्बे भुट्टे के पास की पत्तियों तक पहुँच जाएँ, तो मक्का के लिए स्वीकृत फफूंदनाशक के बारे में पूछें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "19",
+   "field": "text",
+   "lang": "hi",
+   "text": "सेम या किसी दूसरी फ़सल के साथ फ़सल चक्र अपनाएँ, और कटाई के बाद पुराने मक्का के डंठल हटा दें या गाड़ दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "20",
+   "field": "text",
+   "lang": "hi",
+   "text": "भुट्टे के पास की पत्तियाँ जाँचें। अगर उन पर धब्बे हैं, तो इसी हफ़्ते कदम उठाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "21",
+   "field": "text",
+   "lang": "hi",
+   "text": "मक्का के लिए स्वीकृत फफूंदनाशक के बारे में अपने कृषि अधिकारी से पूछें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "22",
+   "field": "text",
+   "lang": "hi",
+   "text": "प्रतिरोधी किस्में लगाएँ और सेम के साथ फ़सल चक्र अपनाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "23",
+   "field": "text",
+   "lang": "hi",
+   "text": "नई फ़ोटो लें: एक पत्ती, पास से, दिन की रोशनी में, धुंधली नहीं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "24",
+   "field": "text",
+   "lang": "hi",
+   "text": "देखें कि क्या पेड़ कमज़ोर या पीले दिखते हैं। उन्हें खाद दें और सूखे में पानी दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "25",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगर धब्बे फलों तक फैल जाएँ, तो कॉफ़ी के लिए स्वीकृत फफूंदनाशक के बारे में अपने कृषि अधिकारी से पूछें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "26",
+   "field": "text",
+   "lang": "hi",
+   "text": "कॉफ़ी पर कुछ छाया रखें और नियमित खाद दें। मज़बूत, अच्छे पोषण वाले पेड़ इसका सामना कर लेते हैं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "27",
+   "field": "text",
+   "lang": "hi",
+   "text": "सबसे ज़्यादा प्रभावित पत्तियाँ तोड़कर नष्ट करें। गिनें कि हर शाखा पर कितनी पत्तियाँ प्रभावित हैं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "28",
+   "field": "text",
+   "lang": "hi",
+   "text": "ततैया और दूसरे प्राकृतिक दुश्मन अक्सर इस कीट को काबू में रखते हैं। ऐसे व्यापक कीटनाशक न छिड़कें जो उन्हें मार दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "29",
+   "field": "text",
+   "lang": "hi",
+   "text": "मध्यम छाया रखें और खरपतवार हटाएँ। कोई भी कीटनाशक इस्तेमाल करने से पहले कृषि अधिकारी से पूछें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "2",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें। कौन सा उत्पाद स्वीकृत है, यह कृषि अधिकारी से पूछें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "5",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "12",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "15",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "अगर छिड़काव करें, तो मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "18",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "21",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "25",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_bean_powder",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या किसी धब्बे को रगड़ने पर उंगली पर लाल भूरा चूर्ण लगता है?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_coffee_tips_dying",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या सबसे नई टहनियों के सिरे काले होकर मर रहे हैं?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_coffee_eye_spot",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या धब्बे आँख जैसे दिखते हैं: भूरे, बीच में हल्का धूसर?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_coffee_peeling",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या भूरे धब्बे की ऊपरी पतली परत छिल जाती है?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_maize_powder",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या रगड़ने पर उंगली पर भूरा चूर्ण लगता है?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_maize_cigar",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या धब्बे सिगार जैसे लंबे हैं, आपकी उंगली से भी लंबे?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_maize_rectangles",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या धब्बे पतले और सीधे किनारों वाले हैं, पत्ती की नसों के बीच?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "bean_angular_leaf_spot",
+   "field": "why",
+   "lang": "hi",
+   "text": "नसों से घिरे, सीधे किनारों वाले धूसर से भूरे धब्बे।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "bean_rust",
+   "field": "why",
+   "lang": "hi",
+   "text": "पीले घेरे वाले छोटे, उभरे, लाल भूरे चूर्ण वाले धब्बे।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "bean_healthy",
+   "field": "why",
+   "lang": "hi",
+   "text": "एक समान हरा रंग, कोई धब्बा या चूर्ण नहीं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_phoma",
+   "field": "why",
+   "lang": "hi",
+   "text": "नई पत्तियों पर गहरे भूरे से काले धब्बे, अक्सर किनारे या सिरे से शुरू।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_healthy",
+   "field": "why",
+   "lang": "hi",
+   "text": "एक समान गहरा हरा रंग, कोई धब्बा या चूर्ण नहीं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_cercospora",
+   "field": "why",
+   "lang": "hi",
+   "text": "हल्के धूसर बीच और पीले घेरे वाले गोल भूरे धब्बे, आँख जैसे।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_leaf_miner",
+   "field": "why",
+   "lang": "hi",
+   "text": "भूरे अनियमित सूखे धब्बे, जहाँ पत्ती की सतह पतले कागज़ की तरह छिलती है।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_common_rust",
+   "field": "why",
+   "lang": "hi",
+   "text": "पत्ती के दोनों ओर छोटे, दालचीनी जैसे भूरे चूर्ण वाले उभार।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_gray_leaf_spot",
+   "field": "why",
+   "lang": "hi",
+   "text": "पत्ती की नसों के बीच लंबे, पतले, सीधे किनारों वाले धूसर या भूरे धब्बे।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_northern_leaf_blight",
+   "field": "why",
+   "lang": "hi",
+   "text": "लंबे, सिगार जैसे धूसर हरे या भूरे धब्बे, अक्सर उंगली से भी लंबे।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_healthy",
+   "field": "why",
+   "lang": "hi",
+   "text": "एक समान हरा रंग, कोई धब्बा, धारी या चूर्ण नहीं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "unknown",
+   "field": "why",
+   "lang": "hi",
+   "text": "फ़ोटो ऐप की जानी हुई किसी पत्ती से मेल नहीं खाई।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "1",
+   "field": "text",
+   "lang": "hi",
+   "text": "नसों से घिरे धूसर भूरे धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "2",
+   "field": "text",
+   "lang": "hi",
+   "text": "फलियों पर लाल भूरे धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "3",
+   "field": "text",
+   "lang": "hi",
+   "text": "पत्ती के नीचे लाल भूरे चूर्ण वाले धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "4",
+   "field": "text",
+   "lang": "hi",
+   "text": "पत्तियाँ पीली होकर जल्दी गिर जाती हैं",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "8",
+   "field": "text",
+   "lang": "hi",
+   "text": "नई पत्तियों पर गहरे भूरे से काले धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "9",
+   "field": "text",
+   "lang": "hi",
+   "text": "नई पत्तियाँ मुड़ी या फटी हुई",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "10",
+   "field": "text",
+   "lang": "hi",
+   "text": "टहनियों के सिरे काले होकर सूखते हुए",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "11",
+   "field": "text",
+   "lang": "hi",
+   "text": "पत्ती के दोनों ओर छोटे अंडाकार भूरे चूर्ण वाले उभार",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "12",
+   "field": "text",
+   "lang": "hi",
+   "text": "भूरा चूर्ण उंगली पर लग जाता है",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "13",
+   "field": "text",
+   "lang": "hi",
+   "text": "सीधे किनारों वाले धूसर से भूरे आयताकार धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "14",
+   "field": "text",
+   "lang": "hi",
+   "text": "धब्बे नसों के बीच पत्ती की लंबाई में चलते हैं",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "15",
+   "field": "text",
+   "lang": "hi",
+   "text": "पहले नीचे की पत्तियाँ मरती हैं, फिर ऊपर की",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "16",
+   "field": "text",
+   "lang": "hi",
+   "text": "लंबे, सिगार जैसे धूसर हरे से भूरे धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "17",
+   "field": "text",
+   "lang": "hi",
+   "text": "धब्बे आपस में मिल जाते हैं और पत्तियाँ सूख जाती हैं",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "18",
+   "field": "text",
+   "lang": "hi",
+   "text": "हल्के धूसर बीच वाले गोल भूरे धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "19",
+   "field": "text",
+   "lang": "hi",
+   "text": "हर धब्बे के चारों ओर पीला घेरा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "20",
+   "field": "text",
+   "lang": "hi",
+   "text": "फलों पर गहरे, धँसे हुए धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "21",
+   "field": "text",
+   "lang": "hi",
+   "text": "पत्ती के ऊपर भूरे सूखे धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "22",
+   "field": "text",
+   "lang": "hi",
+   "text": "धब्बे की पतली ऊपरी परत छिल जाती है; अंदर छोटे लार्वा हो सकते हैं",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "23",
+   "field": "text",
+   "lang": "hi",
+   "text": "सूखे मौसम में बहुत सी पत्तियाँ गिरना",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "urgency",
+   "entity_id": "0",
+   "field": "action",
+   "lang": "hi",
+   "text": "कोई कदम ज़रूरी नहीं",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "urgency",
+   "entity_id": "1",
+   "field": "action",
+   "lang": "hi",
+   "text": "नज़र रखें, 2 हफ़्तों में कदम उठाएँ",
+   "review_status": "unverified"
+  }
+ ],
+ "ui_strings": [
+  {
+   "key": "disclaimer",
+   "text_en": "This is a guess by a computer, not a test. Before spraying anything, check with your local agriculture officer or agro dealer."
+  },
+  {
+   "key": "retake",
+   "text_en": "We could not read this photo. Take a new photo of one leaf, close up, in daylight."
+  },
+  {
+   "key": "see_expert",
+   "text_en": "Show this leaf to an agriculture officer soon."
+  },
+  {
+   "key": "uncertain",
+   "text_en": "We are not sure. Please answer one or two questions."
+  },
+  {
+   "key": "could_be",
+   "text_en": "It could be one of these."
+  }
+ ],
+ "label_aliases": [
+  {
+   "source": "ibean",
+   "raw_label": "angular_leaf_spot",
+   "disease_id": "bean_angular_leaf_spot"
+  },
+  {
+   "source": "ibean",
+   "raw_label": "bean_rust",
+   "disease_id": "bean_rust"
+  },
+  {
+   "source": "ibean",
+   "raw_label": "healthy",
+   "disease_id": "bean_healthy"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+   "disease_id": "maize_gray_leaf_spot"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+   "disease_id": "maize_gray_leaf_spot"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Corn___Common_rust",
+   "disease_id": "maize_common_rust"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Corn_(maize)___Common_rust_",
+   "disease_id": "maize_common_rust"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Corn___Northern_Leaf_Blight",
+   "disease_id": "maize_northern_leaf_blight"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Corn_(maize)___Northern_Leaf_Blight",
+   "disease_id": "maize_northern_leaf_blight"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Corn___healthy",
+   "disease_id": "maize_healthy"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Corn_(maize)___healthy",
+   "disease_id": "maize_healthy"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Tomato___healthy",
+   "disease_id": "unknown"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Tomato___Early_blight",
+   "disease_id": "unknown"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Tomato___Late_blight",
+   "disease_id": "unknown"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Potato___healthy",
+   "disease_id": "unknown"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Apple___healthy",
+   "disease_id": "unknown"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Grape___healthy",
+   "disease_id": "unknown"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Peach___healthy",
+   "disease_id": "unknown"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Squash___Powdery_mildew",
+   "disease_id": "unknown"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Pepper,_bell___healthy",
+   "disease_id": "unknown"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Orange___Haunglongbing_(Citrus_greening)",
+   "disease_id": "unknown"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Background_without_leaves",
+   "disease_id": "unknown"
+  },
+  {
+   "source": "plantvillage",
+   "raw_label": "Soybean___healthy",
+   "disease_id": null
+  },
+  {
+   "source": "coffee_uganda",
+   "raw_label": "Healthy",
+   "disease_id": "coffee_healthy"
+  },
+  {
+   "source": "coffee_uganda",
+   "raw_label": "Coffee Healthy",
+   "disease_id": "coffee_healthy"
+  },
+  {
+   "source": "coffee_uganda",
+   "raw_label": "Coffee Leaf Rust",
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "source": "coffee_uganda",
+   "raw_label": "Leaf Rust",
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "source": "coffee_uganda",
+   "raw_label": "Rust",
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "source": "coffee_uganda",
+   "raw_label": "Coffee Rust",
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "source": "coffee_uganda",
+   "raw_label": "Phoma",
+   "disease_id": "coffee_phoma"
+  },
+  {
+   "source": "coffee_uganda",
+   "raw_label": "Phoma Disease",
+   "disease_id": "coffee_phoma"
+  },
+  {
+   "source": "coffee_uganda",
+   "raw_label": "Coffee Phoma",
+   "disease_id": "coffee_phoma"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Cerscospora",
+   "disease_id": "coffee_cercospora"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Cercospora",
+   "disease_id": "coffee_cercospora"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Leaf rust",
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Leaf_rust",
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Rust",
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Phoma",
+   "disease_id": "coffee_phoma"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Forma",
+   "disease_id": "coffee_phoma"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Healthy",
+   "disease_id": "coffee_healthy"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Miner",
+   "disease_id": "coffee_leaf_miner"
+  },
+  {
+   "source": "jmuben",
+   "raw_label": "Leaf miner",
+   "disease_id": "coffee_leaf_miner"
+  }
+ ],
+ "model_classes": [
+  {
+   "model_version": "v0.2",
+   "class_index": 0,
+   "disease_id": "bean_angular_leaf_spot"
+  },
+  {
+   "model_version": "v0.2",
+   "class_index": 1,
+   "disease_id": "bean_healthy"
+  },
+  {
+   "model_version": "v0.2",
+   "class_index": 2,
+   "disease_id": "bean_rust"
+  },
+  {
+   "model_version": "v0.2",
+   "class_index": 3,
+   "disease_id": "coffee_healthy"
+  },
+  {
+   "model_version": "v0.2",
+   "class_index": 4,
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "model_version": "v0.2",
+   "class_index": 5,
+   "disease_id": "coffee_phoma"
+  },
+  {
+   "model_version": "v0.2",
+   "class_index": 6,
+   "disease_id": "maize_common_rust"
+  },
+  {
+   "model_version": "v0.2",
+   "class_index": 7,
+   "disease_id": "maize_gray_leaf_spot"
+  },
+  {
+   "model_version": "v0.2",
+   "class_index": 8,
+   "disease_id": "maize_healthy"
+  },
+  {
+   "model_version": "v0.2",
+   "class_index": 9,
+   "disease_id": "maize_northern_leaf_blight"
+  },
+  {
+   "model_version": "v0.2",
+   "class_index": 10,
+   "disease_id": "unknown"
+  },
+  {
+   "model_version": "v0.2b",
+   "class_index": 0,
+   "disease_id": "bean_angular_leaf_spot"
+  },
+  {
+   "model_version": "v0.2b",
+   "class_index": 1,
+   "disease_id": "bean_healthy"
+  },
+  {
+   "model_version": "v0.2b",
+   "class_index": 2,
+   "disease_id": "bean_rust"
+  },
+  {
+   "model_version": "v0.2b",
+   "class_index": 3,
+   "disease_id": "maize_common_rust"
+  },
+  {
+   "model_version": "v0.2b",
+   "class_index": 4,
+   "disease_id": "maize_gray_leaf_spot"
+  },
+  {
+   "model_version": "v0.2b",
+   "class_index": 5,
+   "disease_id": "maize_healthy"
+  },
+  {
+   "model_version": "v0.2b",
+   "class_index": 6,
+   "disease_id": "maize_northern_leaf_blight"
+  },
+  {
+   "model_version": "v0.2b",
+   "class_index": 7,
+   "disease_id": "unknown"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 0,
+   "disease_id": "bean_angular_leaf_spot"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 1,
+   "disease_id": "bean_healthy"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 2,
+   "disease_id": "bean_rust"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 3,
+   "disease_id": "coffee_cercospora"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 4,
+   "disease_id": "coffee_healthy"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 5,
+   "disease_id": "coffee_leaf_miner"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 6,
+   "disease_id": "coffee_leaf_rust"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 7,
+   "disease_id": "coffee_phoma"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 8,
+   "disease_id": "maize_common_rust"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 9,
+   "disease_id": "maize_gray_leaf_spot"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 10,
+   "disease_id": "maize_healthy"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 11,
+   "disease_id": "maize_northern_leaf_blight"
+  },
+  {
+   "model_version": "v0.3",
+   "class_index": 12,
+   "disease_id": "unknown"
+  }
+ ]
+}

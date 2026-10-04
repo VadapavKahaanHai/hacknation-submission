@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- test.html: phone smoke test for the exported model. Not the product UI.
+     Folder layout:  test.html, infer.js, crop_bundle.json, model/ (contents of web_model/)
+     Laptop:  python3 -m http.server 8000   then open http://<laptop-ip>:8000/test.html on the phone (same wifi). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model Test</title>
+<style>
+  :root { --bg:#fff; --fg:#111; --muted:#666; --accent:#2E7D32; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#111; --fg:#eee; --muted:#999; } }
+  body { margin:0; padding:16px; font:16px/1.4 system-ui, sans-serif; background:var(--bg); color:var(--fg); }
+  img { max-width:100%; max-height:240px; display:block; margin:12px 0; border-radius:8px; }
+  #status { color:var(--muted); font-size:14px; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  td { padding:4px 0; border-bottom:1px solid #8883; }
+  td:last-child { text-align:right; font-variant-numeric:tabular-nums; }
+  .top td { font-weight:700; color:var(--accent); }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@4.22.0/dist/tf-backend-wasm.min.js"></script>
+<script src="infer.js"></script>
+</head>
+<body>
+<h3>Crop model test</h3>
+<p id="status">Loading model…</p>
+<p id="switch" style="font-size:14px"><a href="?backend=wasm">Try WASM</a> · <a href="?backend=webgl">Try WebGL</a> · <a href="?backend=cpu">Try CPU</a></p>
+<input type="file" id="file" accept="image/*" capture="environment" disabled>
+<img id="preview" alt="">
+<table id="out"></table>
+<script>
+(async () => {
+  const status = document.getElementById("status");
+  try {
+    const want = new URLSearchParams(location.search).get("backend") || undefined;
+    if (tf.wasm) tf.wasm.setWasmPaths("https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@4.22.0/dist/");
+    const bundle = await (await fetch("crop_bundle.json")).json();
+    const info = await Infer.load(bundle, undefined, undefined, { backend: want });
+    status.textContent = `Ready: ${info.model_version}, backend ${info.backend}, download ${info.download_ms} ms, warm-up ${info.warmup_ms} ms`;
+    document.getElementById("file").disabled = false;
+  } catch (e) { status.textContent = "LOAD FAILED: " + e.message; return; }
+
+  document.getElementById("file").onchange = (ev) => {
+    const img = document.getElementById("preview");
+    img.onload = async () => {
+      const r = await Infer.predict(img);
+      status.textContent = `backend ${r.backend}, ${r.latency_ms} ms`;
+      const rows = Object.entries(r.probs).sort((a, b) => b[1] - a[1]);
+      document.getElementById("out").innerHTML = rows.map(([id, p], i) =>
+        `<tr class="${i === 0 ? "top" : ""}"><td>${id}</td><td>${(p * 100).toFixed(1)}%</td></tr>`).join("");
+    };
+    img.src = URL.createObjectURL(ev.target.files[0]);
+  };
+})();
+</script>
+</body>
+</html>

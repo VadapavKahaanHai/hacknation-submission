@@ -1,0 +1,23 @@
+{
+ "model_version": "v0.3",
+ "input_size": 224,
+ "input_range": [
+  0,
+  255
+ ],
+ "labels": [
+  "bean_angular_leaf_spot",
+  "bean_healthy",
+  "bean_rust",
+  "coffee_cercospora",
+  "coffee_healthy",
+  "coffee_leaf_miner",
+  "coffee_leaf_rust",
+  "coffee_phoma",
+  "maize_common_rust",
+  "maize_gray_leaf_spot",
+  "maize_healthy",
+  "maize_northern_leaf_blight",
+  "unknown"
+ ]
+}
