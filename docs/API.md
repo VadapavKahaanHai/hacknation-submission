@@ -81,6 +81,9 @@ Do not use mock predictions as farmer advice or evaluation results.
 |---|---|---|
 | GET | `/health` | Readiness and mode; public, no local paths |
 | GET | `/classes` | Six canonical classes |
+| GET | `/classes?language=hi` | Classes with corrected Hindi `display_name` and both display-name translations |
+| GET | `/fallbacks?language=hi` | Bilingual technical/UI fallback catalog |
+| GET | `/advice-status?class_id=1&language=hi` | Approved content or an explicit missing-content/language fallback |
 | GET | `/advice?class_id=1&language=en` | Approved advice only; empty list when unavailable |
 | POST | `/predictions` | UUIDs, base64 image, optional language; 201 new / 200 retry |
 | GET | `/predictions/{uuid}?language=en` | Stored evidence, escalation, media hash and approved advice |
@@ -100,12 +103,16 @@ without approved content has `advice_available: false`. There is no automatic
 fallback to another language. Editing approved content revokes its review, and
 later reads of old predictions respect that revocation.
 
-Errors use `{"error":"machine_readable_code"}`: 400 invalid input, 401 missing
+Errors include `{"error":"machine_readable_code","fallback":{...}}`: 400 invalid input, 401 missing
 authentication, 404 absent resource, 409 conflicting retry/stale acknowledgement,
 413 size limit, 415 unsupported content, and 503 unconfigured/invalid model or
 temporarily unavailable database. Limits: 8 MiB image bytes, 12 million pixels,
 12 MiB JSON request. JPEG, PNG and single-frame WebP are accepted. Extra POST
 fields are rejected, including unsolicited farmer identity fields.
+
+See [mapping and fallback behavior](MAPPINGS_AND_FALLBACKS.md). Prediction responses
+also include named `top_class`/`second_class` objects and a `fallbacks` list. Stable
+class keys and IDs are preserved; use the added `display_name` fields for UI text.
 
 ## Python functions
 

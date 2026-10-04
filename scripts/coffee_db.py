@@ -9,6 +9,7 @@ from datetime import datetime
 from pathlib import Path
 
 import preprocess_coffee as prep
+from class_mapping import validate_classes
 
 PROJECT = Path(__file__).resolve().parents[1]
 SCHEMA = PROJECT / 'sql' / 'coffee_schema.sql'
@@ -144,7 +145,31 @@ def image_values(row):
     return values
 
 
+def sync_label_maps(db,inventory):
+    """Keep provenance mappings even when all images of a class await review."""
+    mappings=set()
+    for row in inventory:
+        if row['status']!='clean':
+            continue
+        kind,relative=row['source_path'].split('/',1)
+        dataset,label,folder,role=prep.classify(kind,Path(relative))
+        if (dataset,label,folder,role)!=(row['dataset_id'],row['label_en'],row['source_class_name'],row['role']):
+            raise ValueError('Inventory source path and class provenance disagree')
+        if int(row['class_id'])!=prep.CLASSES[label]:
+            raise ValueError('Inventory class ID mismatch')
+        mappings.add((dataset,folder,folder,prep.CLASSES[label]))
+    for record in sorted(mappings):
+        existing=db.execute('SELECT dataset_id,local_folder_name,source_class_name,class_id FROM label_map '
+                            'WHERE dataset_id=? AND local_folder_name=?',record[:2]).fetchone()
+        if existing is None:
+            db.execute('INSERT INTO label_map VALUES (?,?,?,?)',record)
+        elif tuple(existing)!=record:
+            raise ValueError('Existing folder mapping conflicts with source inventory')
+    return len(mappings)
+
+
 def audit(db, rows=None):
+    validate_classes(db.execute('SELECT class_id,label_en,type FROM classes').fetchall())
     if db.execute('PRAGMA user_version').fetchone()[0] != 2:
         raise ValueError('Unsupported schema version; build a new version-2 database')
     if db.execute('PRAGMA integrity_check').fetchone()[0] != 'ok':
@@ -224,8 +249,6 @@ def build_database(prepared, manifest, destination, advice_path=ADVICE, catalog_
                                [record[c] for c in columns])
                 db.executemany('INSERT INTO classes(class_id,label_en,label_hi,type) VALUES (?,?,?,?)',
                                [(r['class_id'],r['label_en'],r['label_hi'],r['type']) for r in catalog['classes']])
-                maps = sorted({(r['dataset_id'],r['source_class_name'],r['source_class_name'],int(r['class_id'])) for r in rows})
-                db.executemany('INSERT INTO label_map VALUES (?,?,?,?)', maps)
                 db.executemany('INSERT INTO images ('+','.join(IMAGE_FIELDS)+') VALUES ('+','.join('?' for _ in IMAGE_FIELDS)+')',
                                (image_values(r) for r in rows))
                 sizes = Counter()
@@ -234,6 +257,7 @@ def build_database(prepared, manifest, destination, advice_path=ADVICE, catalog_
                 db.executemany('UPDATE datasets SET size_mb=? WHERE dataset_id=?',
                                [(n/1_000_000,dataset) for dataset,n in sizes.items()])
                 db.executemany('INSERT INTO database_metadata VALUES (?,?)', metadata.items())
+            sync_label_maps(db,prep.read_csv(prepared/'inventory.csv'))
             import_advice(db, advice)
             db.execute("INSERT INTO database_metadata VALUES ('advice_csv_sha256',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",
                        (prep.sha(advice_path.read_bytes()),))

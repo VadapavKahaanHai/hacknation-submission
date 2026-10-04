@@ -12,6 +12,7 @@ from urllib.parse import parse_qs
 from wsgiref.simple_server import WSGIRequestHandler, make_server
 
 from runtime_db import ROOT, RequestError, Runtime, initialize_runtime
+from class_mapping import MESSAGES, fallback, error_fallback
 
 MAX_BODY = 12 * 1024 * 1024
 
@@ -29,6 +30,7 @@ class API:
 
     def __call__(self,environ,start_response):
         status=200
+        language='en'
         try:
             path=environ.get('PATH_INFO','')
             method=environ.get('REQUEST_METHOD','GET')
@@ -43,6 +45,7 @@ class API:
                 if any(len(values)!=1 for values in query.values()):
                     raise RequestError(400,'duplicate_query_parameter')
                 query={key:values[0] for key,values in query.items()}
+                language=query.get('language','en')
                 body=None
                 if method=='POST':
                     if environ.get('CONTENT_TYPE','').split(';')[0].strip()!='application/json':
@@ -54,6 +57,8 @@ class API:
                     if len(raw)!=length:
                         raise RequestError(400,'incomplete_request')
                     body=json.loads(raw)
+                    if isinstance(body,dict):
+                        language=body.get('language',language)
                 result,status=self.route(method,path,query,body)
         except RequestError as error:
             status=error.status;result={'error':error.code}
@@ -64,6 +69,8 @@ class API:
         except Exception:
             # Do not return database details, request bodies or filesystem paths.
             status=500;result={'error':'internal_error'}
+        if status>=400:
+            result['fallback']=error_fallback(result['error'],language)
         payload=json.dumps(result,ensure_ascii=False,allow_nan=False).encode('utf-8')
         headers=[('Content-Type','application/json; charset=utf-8'),('Content-Length',str(len(payload))),
                  ('Cache-Control','no-store'),('X-Content-Type-Options','nosniff')]
@@ -75,14 +82,22 @@ class API:
     def route(self,method,path,query,body):
         runtime=self.runtime
         if method=='GET' and path=='/classes':
-            return runtime.classes(),200
+            return runtime.classes(query.get('language','en')),200
+        if method=='GET' and path=='/fallbacks':
+            language=query.get('language','en')
+            return [fallback(code,language) for code in MESSAGES],200
+        if method=='GET' and path=='/advice-status':
+            return runtime.advice_status(int(query['class_id']),query.get('language','en')),200
         if method=='GET' and path=='/advice':
             return runtime.get_reviewed_advice(int(query['class_id']),query.get('language','en')),200
         if method=='POST' and path=='/predictions':
             exact_fields(body,['prediction_id','device_id','image_base64'],['language'])
             if not isinstance(body['image_base64'],str):
                 raise RequestError(400,'invalid_image_base64')
-            data=base64.b64decode(body['image_base64'],validate=True)
+            try:
+                data=base64.b64decode(body['image_base64'],validate=True)
+            except (binascii.Error,ValueError):
+                raise RequestError(400,'invalid_image_base64') from None
             result,created=runtime.submit_image(body['prediction_id'],body['device_id'],data,body.get('language','en'))
             return result,201 if created else 200
         if method=='GET' and path=='/predictions':

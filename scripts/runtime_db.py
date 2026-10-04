@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from PIL import Image, ImageOps, UnidentifiedImageError
+from class_mapping import validate_classes, class_display, MODEL_CLASS_IDS, fallback
 
 ROOT = Path(__file__).resolve().parents[1]
 MAX_IMAGE_BYTES = 8 * 1024 * 1024
@@ -97,8 +98,7 @@ def initialize_runtime(catalog, destination, mock=False):
         if purpose is None or purpose[0]!='development_catalog':
             raise ValueError('Initialization requires a development catalog')
         classes = source.execute('SELECT class_id,label_en,label_hi,type FROM classes ORDER BY class_id').fetchall()
-        if [r['class_id'] for r in classes]!=list(range(1,7)):
-            raise ValueError('Expected the six fixed class IDs')
+        validate_classes(classes)
         # Select by view: drafts never enter the runtime package.
         advice = source.execute('SELECT * FROM reviewed_advice').fetchall()
         destination.parent.mkdir(parents=True,exist_ok=True)
@@ -142,6 +142,7 @@ class Runtime:
             if metadata.get('purpose')!='runtime':
                 raise ValueError('Refusing to use the development catalog as a runtime database')
             self.mode=metadata['inference_mode']
+            validate_classes(db.execute('SELECT class_id,label_en,type FROM classes').fetchall())
         self.media=self.database.parent/'media'
         self.predictor=predictor
         self.model_id=model_id
@@ -168,9 +169,22 @@ class Runtime:
         finally:
             db.close()
 
-    def classes(self):
+    def classes(self,language='en'):
+        language_value(language)
         with self.connection() as db:
-            return [dict(r) for r in db.execute('SELECT class_id,label_en,label_hi,type FROM classes ORDER BY class_id')]
+            return [class_display(r,language) for r in db.execute('SELECT class_id,label_en,label_hi,type FROM classes ORDER BY class_id')]
+
+    def advice_status(self,class_id,language='en'):
+        language_value(language)
+        if type(class_id) is not int or class_id not in MODEL_CLASS_IDS:
+            raise RequestError(400,'invalid_class')
+        with self.connection() as db:
+            advice=[dict(r) for r in db.execute('SELECT * FROM reviewed_advice WHERE class_id=? AND language=?',(class_id,language))]
+            languages=[r[0] for r in db.execute('SELECT language FROM reviewed_advice WHERE class_id=? ORDER BY language',(class_id,))]
+            return {'class':class_display(db.execute('SELECT * FROM classes WHERE class_id=?',(class_id,)).fetchone(),language),
+                    'language':language,'advice':advice,'advice_available':bool(advice),
+                    'available_advice_languages':languages,
+                    'fallbacks':[] if advice else [fallback('advice_language_unavailable' if languages else 'no_approved_advice',language)]}
 
     def get_reviewed_advice(self,class_id,language='en'):
         language_value(language)
@@ -192,6 +206,21 @@ class Runtime:
                                                      (prediction_id,language))]
         result['advice_available']=bool(result['advice'])
         result['is_mock']=self.mode=='mock'
+        result['top_class']=class_display(db.execute('SELECT class_id,label_en,label_hi,type FROM classes WHERE class_id=?',
+                                                      (result['top_class_id'],)).fetchone(),language)
+        result['second_class']=class_display(db.execute('SELECT class_id,label_en,label_hi,type FROM classes WHERE class_id=?',
+                                                         (result['second_class_id'],)).fetchone(),language)
+        result['fallbacks']=[]
+        if result['status']=='not_sure_ask_a_person':
+            reason=db.execute('SELECT reason FROM prediction_decisions WHERE prediction_id=?',(prediction_id,)).fetchone()[0]
+            result['fallbacks'].append(fallback(reason,language))
+        elif not result['advice']:
+            other=db.execute('SELECT 1 FROM reviewed_advice WHERE class_id=? LIMIT 1',(result['top_class_id'],)).fetchone()
+            result['fallbacks'].append(fallback('advice_language_unavailable' if other else 'no_approved_advice',language))
+        if db.execute('SELECT 1 FROM sync_queue WHERE row_id=?',(prediction_id,)).fetchone():
+            result['fallbacks'].append(fallback('pending_sync',language))
+        if result['is_mock']:
+            result['fallbacks'].append(fallback('mock_result',language))
         return result
 
     def get_prediction(self,prediction_id,language='en'):
@@ -249,7 +278,7 @@ class Runtime:
                         os.fsync(stream.fileno())
                 db.execute('''INSERT INTO predictions(prediction_id,device_id,image_path,model_id,
                     top_class_id,confidence,second_class_id,second_confidence) VALUES (?,?,?,?,?,?,?,?)''',
-                    (prediction_id,device_id,relative,self.model_id,top+1,scores[top],second+1,scores[second]))
+                    (prediction_id,device_id,relative,self.model_id,MODEL_CLASS_IDS[top],scores[top],MODEL_CLASS_IDS[second],scores[second]))
                 db.execute('INSERT INTO prediction_media VALUES (?,?,?,?)',
                            (prediction_id,photo_hash,image.width,image.height))
                 result=self._prediction(db,prediction_id,language)
