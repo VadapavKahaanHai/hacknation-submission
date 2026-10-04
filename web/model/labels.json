@@ -1,0 +1,18 @@
+{
+ "model_version": "v0.2b",
+ "input_size": 224,
+ "input_range": [
+  0,
+  255
+ ],
+ "labels": [
+  "bean_angular_leaf_spot",
+  "bean_healthy",
+  "bean_rust",
+  "maize_common_rust",
+  "maize_gray_leaf_spot",
+  "maize_healthy",
+  "maize_northern_leaf_blight",
+  "unknown"
+ ]
+}

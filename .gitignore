@@ -7,3 +7,16 @@ artifacts/
 *.sqlite-journal
 *.sqlite-wal
 *.sqlite-shm
+# training data and large artifacts (kept on Google Drive: MyDrive/cropdx)
+data/
+data.zip
+coffee_raw/
+saved_model/
+web_model_smoke/
+model.keras
+ref.json
+cropdx_model.zip
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store

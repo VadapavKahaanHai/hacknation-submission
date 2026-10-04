@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "content_version": "0.3.0",
+  "model_version": "v0.2b",
+  "crop_id": "bean",
+  "lang": "hi",
+  "confidence": {
+    "level": "high",
+    "top": "bean_rust",
+    "top_prob": 0.857,
+    "second": "bean_angular_leaf_spot",
+    "second_prob": 0.092,
+    "margin": 0.765,
+    "danger_watch": []
+  },
+  "disclaimer": "यह कंप्यूटर का अनुमान है, जाँच नहीं। कुछ भी छिड़कने से पहले अपने कृषि अधिकारी या कृषि विक्रेता से पूछें।",
+  "status": "result",
+  "diagnosis": {
+    "disease_id": "bean_rust",
+    "crop_id": "bean",
+    "crop_name": "सेम (बीन्स)",
+    "name": "Bean rust",
+    "name_en": "Bean rust",
+    "pathogen": "Uromyces appendiculatus",
+    "cause_type": "fungal",
+    "urgency": {
+      "level": 2,
+      "label": "मध्यम",
+      "action": "इसी हफ़्ते कदम उठाएँ",
+      "color": "#EF6C00"
+    },
+    "is_curable": true,
+    "see_expert": false,
+    "summary": "Fungus spread by wind; can make leaves fall early.",
+    "why": "Small raised reddish brown powdery spots with a yellow ring.",
+    "symptoms": [
+      {
+        "plant_part": "leaf",
+        "text": "Reddish brown powdery spots under the leaf"
+      },
+      {
+        "plant_part": "leaf",
+        "text": "Leaves turn yellow and fall early"
+      }
+    ],
+    "content_status": "draft",
+    "lang": "hi",
+    "untranslated_fields": [
+      "symptom:3:text",
+      "symptom:4:text",
+      "disease:bean_rust:name",
+      "disease:bean_rust:summary",
+      "disease:bean_rust:why"
+    ]
+  },
+  "advice": {
+    "today": [
+      {
+        "advice_id": 4,
+        "method": "cultural",
+        "text": "Remove leaves with the most rust spots.",
+        "safety_note": null,
+        "is_fallback": true
+      }
+    ],
+    "treatment": [
+      {
+        "advice_id": 5,
+        "method": "chemical",
+        "text": "Use a fungicide approved for bean rust when spots first appear.",
+        "safety_note": "Follow the label for dose and days before harvest. Wear gloves and a mask.",
+        "is_fallback": true
+      }
+    ],
+    "prevention": [
+      {
+        "advice_id": 6,
+        "method": "varietal",
+        "text": "Plant rust resistant varieties next season.",
+        "safety_note": null,
+        "is_fallback": true
+      }
+    ]
+  },
+  "danger_watch": [],
+  "see_expert": false
+}
