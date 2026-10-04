@@ -20,3 +20,6 @@ node_modules/
 __pycache__/
 *.pyc
 .DS_Store
+*.pptx
+*.mp4
+Audio/
