@@ -931,6 +931,70 @@
   },
   {
    "entity_type": "disease",
+   "entity_id": "bean_angular_leaf_spot",
+   "field": "name",
+   "lang": "hi",
+   "text": "कोणीय पत्ती धब्बा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "bean_rust",
+   "field": "name",
+   "lang": "hi",
+   "text": "सेम का रतुआ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "bean_healthy",
+   "field": "name",
+   "lang": "hi",
+   "text": "स्वस्थ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_common_rust",
+   "field": "name",
+   "lang": "hi",
+   "text": "मक्का का रतुआ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_gray_leaf_spot",
+   "field": "name",
+   "lang": "hi",
+   "text": "धूसर पत्ती धब्बा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_northern_leaf_blight",
+   "field": "name",
+   "lang": "hi",
+   "text": "उत्तरी पत्ती झुलसा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_healthy",
+   "field": "name",
+   "lang": "hi",
+   "text": "स्वस्थ",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "unknown",
+   "field": "name",
+   "lang": "hi",
+   "text": "पहचान नहीं हुई",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
    "entity_id": "coffee_leaf_rust",
    "field": "summary",
    "lang": "hi",

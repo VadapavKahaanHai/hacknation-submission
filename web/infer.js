@@ -10,21 +10,12 @@ const Infer = (() => {
   let meta = null;      // labels.json written by train.py
   let backend = null;
 
-  async function pickBackend() {
-    for (const b of ["webgl", "wasm", "cpu"]) {   // fallback chain for weak / old devices
-      try {
-        if (await tf.setBackend(b)) { await tf.ready(); return b; }
-      } catch (e) { /* try next */ }
-    }
-    throw new Error("No TF.js backend available");
-  }
-
   // Call once at app start. bundle = parsed crop_bundle.json.
-  async function load(bundle, modelUrl = "model/model.json", labelsUrl = "model/labels.json") {
-    backend = await pickBackend();
+  // opts.backend: preferred backend ("wasm" starts fastest on iPhone). If a backend cannot run the
+  // model (load or warm-up throws), the next one is tried automatically: wasm -> webgl -> cpu.
+  async function load(bundle, modelUrl = "model/model.json", labelsUrl = "model/labels.json", opts = {}) {
+    const t0 = performance.now();
     meta = await (await fetch(labelsUrl)).json();
-    model = await tf.loadGraphModel(modelUrl);
-
     // Contract check: model labels must equal model_classes in the DB bundle, in order.
     const dbLabels = bundle.model_classes
       .filter(r => r.model_version === meta.model_version)
@@ -33,13 +24,30 @@ const Infer = (() => {
     if (JSON.stringify(dbLabels) !== JSON.stringify(meta.labels)) {
       throw new Error(`Label mismatch between model ${meta.model_version} and crop_bundle.json`);
     }
-    // Warm-up: first WebGL call compiles shaders (slow). Do it behind the splash screen.
-    // Also checks the class count from a real prediction (output shape metadata is not set by our export).
-    const probe = tf.tidy(() => model.predict(tf.zeros([1, meta.input_size, meta.input_size, 3])));
-    const outDim = probe.shape[probe.shape.length - 1];
-    probe.dispose();
-    if (outDim !== meta.labels.length) throw new Error(`Model outputs ${outDim} classes, labels has ${meta.labels.length}`);
-    return { backend, model_version: meta.model_version };
+    const order = [...new Set([opts.backend, "wasm", "webgl", "cpu"].filter(Boolean))];
+    const tried = [];
+    for (const b of order) {
+      try {
+        if (!(await tf.setBackend(b))) { tried.push(`${b}: unavailable`); continue; }
+        await tf.ready();
+        const t1 = performance.now();
+        model = await tf.loadGraphModel(modelUrl);
+        const t2 = performance.now();
+        // Warm-up (compiles shaders on WebGL) and class-count check from a real prediction.
+        const probe = tf.tidy(() => model.predict(tf.zeros([1, meta.input_size, meta.input_size, 3])));
+        const outDim = probe.shape[probe.shape.length - 1];
+        probe.dispose();
+        if (outDim !== meta.labels.length) throw new Error(`Model outputs ${outDim} classes, labels has ${meta.labels.length}`);
+        backend = b;
+        return { backend, model_version: meta.model_version, tried,
+                 download_ms: Math.round(t2 - t1), warmup_ms: Math.round(performance.now() - t2),
+                 total_ms: Math.round(performance.now() - t0) };
+      } catch (e) {
+        tried.push(`${b}: ${e.message}`);
+        if (e.message.startsWith("Model outputs")) throw e;
+      }
+    }
+    throw new Error("No backend could run the model. " + tried.join(" | "));
   }
 
   // imgEl: <img>, <canvas>, ImageBitmap or <video>. Returns the frozen output format.

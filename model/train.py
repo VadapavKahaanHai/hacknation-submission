@@ -347,6 +347,12 @@ def export(model_path="model.keras", out="web_model", version=None, labels=None)
         "--signature_name=serving_default",
         # no quantization: mixed 2 and 4 byte weights misalign on iPhone Safari. float32 ~3.7 MB, all aligned.
         "saved_model", out], check=True)
+    # make the model loadable by the WASM backend (fast on iPhone); no change to its outputs
+    fixer = Path(__file__).with_name("fix_wasm.py")
+    if fixer.exists():
+        subprocess.run([sys.executable, str(fixer), out], check=True)
+    else:
+        print("WARNING: fix_wasm.py not found next to train.py; run it on the export before shipping")
     Path(out, "labels.json").write_text(json.dumps(
         {"model_version": version, "input_size": IMG, "input_range": [0, 255], "labels": labels}, indent=1))
     size = sum(f.stat().st_size for f in Path(out).iterdir())

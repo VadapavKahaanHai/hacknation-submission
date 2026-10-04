@@ -10,8 +10,8 @@ World Bank "Small AI for Development" hackathon entry. A farmer picks a crop, ph
 | Model (MobileNetV3Small, 13 classes) | `v0.3` trained, validation accuracy 90.5% (previous `v0.2b`, 8 classes: 92.7%) |
 | TF.js export | `web/model/` (about 3.9 MB, float32 weights, iPhone safe) |
 | Browser inference (`web/infer.js`) | Done |
-| Port of `build_response()` to JS | **Not started** (critical path) |
-| Product UI | Not started |
+| Port of `build_response()` to JS | Done: `web/logic.js`, identical to Python on 3,000/3,000 random cases |
+| Farmer app | Done: `web/index.html` (crop picker, camera, result card, yes/no questions, English/Hindi, read aloud, offline service worker) |
 
 ## Classes (model v0.3, index order is the contract)
 
@@ -40,6 +40,15 @@ model/        train.py (prep, train, export), verify.py + verify.mjs (parity che
 web/          infer.js (offline inference), test.html (phone test page), crop_bundle.json, model/ (TF.js)
 docs/         sample response objects
 ```
+
+## Farmer app (`web/`)
+
+1. `index.html` + `app.js`: crop picker, camera or gallery, result card (name, urgency, confidence, what to do today, treatment with safety notes, prevention, why), yes/no questions when unsure, "see an agriculture officer", English/Hindi switch, read aloud with the phone's own voice.
+2. `logic.js`: JavaScript port of `cropdb.build_response()`, identical to Python on 3,000 random cases.
+3. `infer.js`: runs the model on the phone; tries WASM, then WebGL, then CPU, and falls back automatically if one fails.
+4. `sw.js` + `manifest.webmanifest`: after one visit over https, everything (TF.js, model, advice) is cached and the app works with no internet; it can be added to the home screen.
+5. `vendor/`: TF.js 4.22 and its WASM files, bundled so nothing loads from the internet.
+6. `model/fix_wasm.py`: the TF.js converter stores some MobileNetV3 biases as scalars, which the WASM backend rejects. This rewrites them as vectors (identical outputs); `train.py export` runs it automatically.
 
 ## Contracts
 
