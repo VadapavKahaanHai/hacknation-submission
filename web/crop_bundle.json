@@ -6,7 +6,7 @@
   },
   {
    "key": "content_version",
-   "value": "0.4.1"
+   "value": "0.4.2"
   },
   {
    "key": "cropset",
@@ -1119,6 +1119,590 @@
    "field": "text",
    "lang": "hi",
    "text": "जल्द ही यह पत्ती किसी कृषि अधिकारी को दिखाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "1",
+   "field": "text",
+   "lang": "hi",
+   "text": "बहुत धब्बेदार पत्तियाँ हटा दें। गीले पौधों को न छुएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "2",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगर यह फैलता रहे, तो अपने क्षेत्र में सेम के लिए स्वीकृत फफूंदनाशक का प्रयोग करें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "3",
+   "field": "text",
+   "lang": "hi",
+   "text": "साफ़ बीज इस्तेमाल करें और अगले मौसम में उसी जगह सेम न लगाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "4",
+   "field": "text",
+   "lang": "hi",
+   "text": "सबसे ज़्यादा रतुआ धब्बों वाली पत्तियाँ हटा दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "5",
+   "field": "text",
+   "lang": "hi",
+   "text": "धब्बे दिखते ही सेम के रतुआ के लिए स्वीकृत फफूंदनाशक का प्रयोग करें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "6",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगले मौसम में रतुआ प्रतिरोधी किस्में लगाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "11",
+   "field": "text",
+   "lang": "hi",
+   "text": "मरी हुई, काली पड़ी टहनियों के सिरे काटकर जला दें या गाड़ दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "12",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगर नई टहनियाँ मरती रहें, तो अपने क्षेत्र में कॉफ़ी के लिए स्वीकृत फफूंदनाशक का प्रयोग करें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "13",
+   "field": "text",
+   "lang": "hi",
+   "text": "कॉफ़ी को ठंडी हवा से बचाने के लिए हवा रोकने वाले पेड़ या बाड़ लगाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "14",
+   "field": "text",
+   "lang": "hi",
+   "text": "गिनें कि कितनी पत्तियाँ ढकी हैं। अगर कुछ ही हैं, तो नज़र रखते रहें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "15",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगर झंडा (नर फूल) निकलने से पहले ज़्यादातर पत्तियाँ ढक जाएँ, तो कृषि अधिकारी से पूछें कि क्या फफूंदनाशक लगाना ठीक रहेगा।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "16",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगले मौसम में रतुआ प्रतिरोधी मक्का किस्में लगाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "17",
+   "field": "text",
+   "lang": "hi",
+   "text": "खेत में घूमकर देखें कि क्या धब्बे भुट्टे के पास की पत्तियों तक पहुँच रहे हैं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "18",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगर दाना भरने से पहले धब्बे भुट्टे के पास की पत्तियों तक पहुँच जाएँ, तो मक्का के लिए स्वीकृत फफूंदनाशक के बारे में पूछें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "19",
+   "field": "text",
+   "lang": "hi",
+   "text": "सेम या किसी दूसरी फ़सल के साथ फ़सल चक्र अपनाएँ, और कटाई के बाद पुराने मक्का के डंठल हटा दें या गाड़ दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "20",
+   "field": "text",
+   "lang": "hi",
+   "text": "भुट्टे के पास की पत्तियाँ जाँचें। अगर उन पर धब्बे हैं, तो इसी हफ़्ते कदम उठाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "21",
+   "field": "text",
+   "lang": "hi",
+   "text": "मक्का के लिए स्वीकृत फफूंदनाशक के बारे में अपने कृषि अधिकारी से पूछें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "22",
+   "field": "text",
+   "lang": "hi",
+   "text": "प्रतिरोधी किस्में लगाएँ और सेम के साथ फ़सल चक्र अपनाएँ।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "23",
+   "field": "text",
+   "lang": "hi",
+   "text": "नई फ़ोटो लें: एक पत्ती, पास से, दिन की रोशनी में, धुंधली नहीं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "24",
+   "field": "text",
+   "lang": "hi",
+   "text": "देखें कि क्या पेड़ कमज़ोर या पीले दिखते हैं। उन्हें खाद दें और सूखे में पानी दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "25",
+   "field": "text",
+   "lang": "hi",
+   "text": "अगर धब्बे फलों तक फैल जाएँ, तो कॉफ़ी के लिए स्वीकृत फफूंदनाशक के बारे में अपने कृषि अधिकारी से पूछें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "26",
+   "field": "text",
+   "lang": "hi",
+   "text": "कॉफ़ी पर कुछ छाया रखें और नियमित खाद दें। मज़बूत, अच्छे पोषण वाले पेड़ इसका सामना कर लेते हैं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "27",
+   "field": "text",
+   "lang": "hi",
+   "text": "सबसे ज़्यादा प्रभावित पत्तियाँ तोड़कर नष्ट करें। गिनें कि हर शाखा पर कितनी पत्तियाँ प्रभावित हैं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "28",
+   "field": "text",
+   "lang": "hi",
+   "text": "ततैया और दूसरे प्राकृतिक दुश्मन अक्सर इस कीट को काबू में रखते हैं। ऐसे व्यापक कीटनाशक न छिड़कें जो उन्हें मार दें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "29",
+   "field": "text",
+   "lang": "hi",
+   "text": "मध्यम छाया रखें और खरपतवार हटाएँ। कोई भी कीटनाशक इस्तेमाल करने से पहले कृषि अधिकारी से पूछें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "2",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें। कौन सा उत्पाद स्वीकृत है, यह कृषि अधिकारी से पूछें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "5",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "12",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "15",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "अगर छिड़काव करें, तो मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "18",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "21",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "advice",
+   "entity_id": "25",
+   "field": "safety_note",
+   "lang": "hi",
+   "text": "मात्रा और कटाई से पहले के दिनों के लिए लेबल का पालन करें। दस्ताने और मास्क पहनें।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_bean_powder",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या किसी धब्बे को रगड़ने पर उंगली पर लाल भूरा चूर्ण लगता है?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_coffee_tips_dying",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या सबसे नई टहनियों के सिरे काले होकर मर रहे हैं?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_coffee_eye_spot",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या धब्बे आँख जैसे दिखते हैं: भूरे, बीच में हल्का धूसर?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_coffee_peeling",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या भूरे धब्बे की ऊपरी पतली परत छिल जाती है?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_maize_powder",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या रगड़ने पर उंगली पर भूरा चूर्ण लगता है?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_maize_cigar",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या धब्बे सिगार जैसे लंबे हैं, आपकी उंगली से भी लंबे?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "question",
+   "entity_id": "q_maize_rectangles",
+   "field": "text",
+   "lang": "hi",
+   "text": "क्या धब्बे पतले और सीधे किनारों वाले हैं, पत्ती की नसों के बीच?",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "bean_angular_leaf_spot",
+   "field": "why",
+   "lang": "hi",
+   "text": "नसों से घिरे, सीधे किनारों वाले धूसर से भूरे धब्बे।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "bean_rust",
+   "field": "why",
+   "lang": "hi",
+   "text": "पीले घेरे वाले छोटे, उभरे, लाल भूरे चूर्ण वाले धब्बे।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "bean_healthy",
+   "field": "why",
+   "lang": "hi",
+   "text": "एक समान हरा रंग, कोई धब्बा या चूर्ण नहीं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_phoma",
+   "field": "why",
+   "lang": "hi",
+   "text": "नई पत्तियों पर गहरे भूरे से काले धब्बे, अक्सर किनारे या सिरे से शुरू।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_healthy",
+   "field": "why",
+   "lang": "hi",
+   "text": "एक समान गहरा हरा रंग, कोई धब्बा या चूर्ण नहीं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_cercospora",
+   "field": "why",
+   "lang": "hi",
+   "text": "हल्के धूसर बीच और पीले घेरे वाले गोल भूरे धब्बे, आँख जैसे।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "coffee_leaf_miner",
+   "field": "why",
+   "lang": "hi",
+   "text": "भूरे अनियमित सूखे धब्बे, जहाँ पत्ती की सतह पतले कागज़ की तरह छिलती है।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_common_rust",
+   "field": "why",
+   "lang": "hi",
+   "text": "पत्ती के दोनों ओर छोटे, दालचीनी जैसे भूरे चूर्ण वाले उभार।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_gray_leaf_spot",
+   "field": "why",
+   "lang": "hi",
+   "text": "पत्ती की नसों के बीच लंबे, पतले, सीधे किनारों वाले धूसर या भूरे धब्बे।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_northern_leaf_blight",
+   "field": "why",
+   "lang": "hi",
+   "text": "लंबे, सिगार जैसे धूसर हरे या भूरे धब्बे, अक्सर उंगली से भी लंबे।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "maize_healthy",
+   "field": "why",
+   "lang": "hi",
+   "text": "एक समान हरा रंग, कोई धब्बा, धारी या चूर्ण नहीं।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "disease",
+   "entity_id": "unknown",
+   "field": "why",
+   "lang": "hi",
+   "text": "फ़ोटो ऐप की जानी हुई किसी पत्ती से मेल नहीं खाई।",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "1",
+   "field": "text",
+   "lang": "hi",
+   "text": "नसों से घिरे धूसर भूरे धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "2",
+   "field": "text",
+   "lang": "hi",
+   "text": "फलियों पर लाल भूरे धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "3",
+   "field": "text",
+   "lang": "hi",
+   "text": "पत्ती के नीचे लाल भूरे चूर्ण वाले धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "4",
+   "field": "text",
+   "lang": "hi",
+   "text": "पत्तियाँ पीली होकर जल्दी गिर जाती हैं",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "8",
+   "field": "text",
+   "lang": "hi",
+   "text": "नई पत्तियों पर गहरे भूरे से काले धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "9",
+   "field": "text",
+   "lang": "hi",
+   "text": "नई पत्तियाँ मुड़ी या फटी हुई",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "10",
+   "field": "text",
+   "lang": "hi",
+   "text": "टहनियों के सिरे काले होकर सूखते हुए",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "11",
+   "field": "text",
+   "lang": "hi",
+   "text": "पत्ती के दोनों ओर छोटे अंडाकार भूरे चूर्ण वाले उभार",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "12",
+   "field": "text",
+   "lang": "hi",
+   "text": "भूरा चूर्ण उंगली पर लग जाता है",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "13",
+   "field": "text",
+   "lang": "hi",
+   "text": "सीधे किनारों वाले धूसर से भूरे आयताकार धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "14",
+   "field": "text",
+   "lang": "hi",
+   "text": "धब्बे नसों के बीच पत्ती की लंबाई में चलते हैं",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "15",
+   "field": "text",
+   "lang": "hi",
+   "text": "पहले नीचे की पत्तियाँ मरती हैं, फिर ऊपर की",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "16",
+   "field": "text",
+   "lang": "hi",
+   "text": "लंबे, सिगार जैसे धूसर हरे से भूरे धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "17",
+   "field": "text",
+   "lang": "hi",
+   "text": "धब्बे आपस में मिल जाते हैं और पत्तियाँ सूख जाती हैं",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "18",
+   "field": "text",
+   "lang": "hi",
+   "text": "हल्के धूसर बीच वाले गोल भूरे धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "19",
+   "field": "text",
+   "lang": "hi",
+   "text": "हर धब्बे के चारों ओर पीला घेरा",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "20",
+   "field": "text",
+   "lang": "hi",
+   "text": "फलों पर गहरे, धँसे हुए धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "21",
+   "field": "text",
+   "lang": "hi",
+   "text": "पत्ती के ऊपर भूरे सूखे धब्बे",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "22",
+   "field": "text",
+   "lang": "hi",
+   "text": "धब्बे की पतली ऊपरी परत छिल जाती है; अंदर छोटे लार्वा हो सकते हैं",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "symptom",
+   "entity_id": "23",
+   "field": "text",
+   "lang": "hi",
+   "text": "सूखे मौसम में बहुत सी पत्तियाँ गिरना",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "urgency",
+   "entity_id": "0",
+   "field": "action",
+   "lang": "hi",
+   "text": "कोई कदम ज़रूरी नहीं",
+   "review_status": "unverified"
+  },
+  {
+   "entity_type": "urgency",
+   "entity_id": "1",
+   "field": "action",
+   "lang": "hi",
+   "text": "नज़र रखें, 2 हफ़्तों में कदम उठाएँ",
    "review_status": "unverified"
   }
  ],
