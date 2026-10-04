@@ -13,6 +13,10 @@ const STR = {
     safety: "Safety", offline: "✓ Ready to work without internet", online: "Works on this phone",
     photoOf: "Photo of", healthyNote: "No disease found. Keep checking your crop every week.",
     loadFail: "Could not start the app. Reload the page once with internet.",
+    looksLike: "This looks like a {crop} leaf, not {picked}.", switchTo: "Check it as {crop}",
+    keep: "No, it is {picked}",
+    notLeaf: "This does not look like a leaf.", notLeafHelp: "Take a photo of one leaf, close up, so the leaf fills the picture.",
+    anyway: "Check anyway",
   },
   hi: {
     app: "पत्ती जाँच", loading: "तैयार हो रहा है…", pick: "कौन सी फ़सल है?",
@@ -25,6 +29,10 @@ const STR = {
     safety: "सुरक्षा", offline: "✓ बिना इंटरनेट के काम करने को तैयार", online: "इस फ़ोन पर चलता है",
     photoOf: "फ़ोटो:", healthyNote: "कोई बीमारी नहीं मिली। हर हफ़्ते फ़सल जाँचते रहें।",
     loadFail: "ऐप शुरू नहीं हो सका। इंटरनेट के साथ पेज एक बार फिर खोलें।",
+    looksLike: "यह {picked} नहीं, {crop} की पत्ती लगती है।", switchTo: "{crop} की तरह जाँचें",
+    keep: "नहीं, यह {picked} ही है",
+    notLeaf: "यह पत्ती जैसी नहीं लगती।", notLeafHelp: "एक पत्ती की पास से फ़ोटो लें, ताकि पत्ती से पूरी तस्वीर भर जाए।",
+    anyway: "फिर भी जाँचें",
   },
 };
 const EMOJI = { bean: "🫘", coffee: "☕", maize: "🌽" };
@@ -77,6 +85,49 @@ function toCanvas(img) {
   return c;
 }
 
+// Quick "is there a leaf?" check before the model. The model's unknown class only learned other
+// crops' leaves, so a table or a wall would otherwise be forced into a disease. Counts leaf-coloured
+// pixels (yellow to green hues, not grey). Diseased leaves still have green; "Check anyway" covers the rest.
+const MIN_LEAF_FRACTION = 0.08;
+function leafFraction(canvas) {
+  const d = canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height).data;
+  let leaf = 0;
+  for (let i = 0; i < d.length; i += 4) {
+    const r = d[i] / 255, g = d[i + 1] / 255, b = d[i + 2] / 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b), delta = max - min;
+    if (max < 0.12 || delta / (max || 1) < 0.18) continue;          // too dark or too grey
+    let h;
+    if (max === r) h = 60 * (((g - b) / delta) % 6);
+    else if (max === g) h = 60 * ((b - r) / delta + 2);
+    else h = 60 * ((r - g) / delta + 4);
+    if (h < 0) h += 360;
+    if (h >= 45 && h <= 170) leaf++;                                 // yellow-green to green
+  }
+  return leaf / (d.length / 4);
+}
+
+function renderNotLeaf(canvas) {
+  $("r-body").innerHTML = `
+    <div class="card possible"><h3>🍃 ${esc(S("notLeaf"))}</h3><p style="margin:0">${esc(S("notLeafHelp"))}</p></div>
+    <div class="stack" style="margin-bottom:12px">
+      <button class="big" data-go2="camera">📷 ${esc(S("retake"))}</button>
+      <button class="big secondary" id="nl-anyway">${esc(S("anyway"))}</button>
+    </div>`;
+  $("r-body").querySelector("[data-go2]").onclick = () => show("camera");
+  $("nl-anyway").onclick = () => { show("checking"); runModel(canvas); };
+  $("r-disclaimer").textContent = state.L.uiText("disclaimer", state.lang);
+  show("result");
+}
+
+async function runModel(canvas) {
+  const r = await Infer.predict(canvas);
+  state.probs = r.probs;
+  state.answers = {};
+  state.mismatchDismissed = false;
+  $("status").textContent = `${r.backend} · ${r.latency_ms} ms · model ${r.model_version}`;
+  render();
+}
+
 async function onPhoto(file) {
   if (!file) return;
   if (state.photoUrl) URL.revokeObjectURL(state.photoUrl);
@@ -85,16 +136,46 @@ async function onPhoto(file) {
   show("checking");
   const img = new Image();
   img.onload = async () => {
-    const r = await Infer.predict(toCanvas(img));
-    state.probs = r.probs;
-    state.answers = {};
-    $("status").textContent = `${r.backend} · ${r.latency_ms} ms · model ${r.model_version}`;
-    render();
+    const canvas = toCanvas(img);
+    const lf = leafFraction(canvas);
+    state.probs = null;
+    if (lf < MIN_LEAF_FRACTION) { $("status").textContent = `leaf area ${Math.round(lf * 100)}%`; return renderNotLeaf(canvas); }
+    runModel(canvas);
   };
   img.src = state.photoUrl;
 }
 
+// The model scores every crop at once. If the photo clearly belongs to another crop than the one
+// picked, say so instead of forcing an answer from the wrong crop's diseases.
+const MISMATCH_MIN = 0.6;
+function otherCropGuess() {
+  if (state.mismatchDismissed) return null;
+  const totals = {};
+  for (const [id, p] of Object.entries(state.probs)) {
+    const c = state.L.diseases[id] && state.L.diseases[id].crop_id;
+    if (c) totals[c] = (totals[c] || 0) + p;
+  }
+  const best = Object.entries(totals).sort((a, b) => b[1] - a[1])[0];
+  return best && best[0] !== state.crop && best[1] >= MISMATCH_MIN && state.L.crops[best[0]].enabled ? best[0] : null;
+}
+
+function renderMismatch(other) {
+  const fill = k => S(k).replace("{crop}", cropName(other)).replace("{picked}", cropName(state.crop));
+  $("r-body").innerHTML = `
+    <div class="card possible"><h3>${EMOJI[other] || "🌱"} ${esc(fill("looksLike"))}</h3></div>
+    <div class="stack" style="margin-bottom:12px">
+      <button class="big" id="mm-switch">${esc(fill("switchTo"))}</button>
+      <button class="big secondary" id="mm-keep">${esc(fill("keep"))}</button>
+    </div>`;
+  $("mm-switch").onclick = () => { state.crop = other; state.answers = {}; render(); };
+  $("mm-keep").onclick = () => { state.mismatchDismissed = true; render(); };
+  $("r-disclaimer").textContent = state.L.uiText("disclaimer", state.lang);
+  show("result");
+}
+
 function render() {
+  const other = otherCropGuess();
+  if (other) return renderMismatch(other);
   const answers = Object.keys(state.answers).length ? state.answers : null;
   const resp = state.L.buildResponse(state.crop, state.probs, state.lang, answers);
   state.resp = resp;

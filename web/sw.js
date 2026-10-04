@@ -1,6 +1,6 @@
 // sw.js: makes the app work with no internet after the first visit.
 // Bump VERSION whenever the model, crop_bundle.json or app files change.
-const VERSION = "leafcheck-v0.3-2";
+const VERSION = "leafcheck-v0.3-4";
 const CORE = [
   "./", "index.html", "app.js", "logic.js", "infer.js", "crop_bundle.json", "manifest.webmanifest",
   "icon-192.png", "icon-512.png",
