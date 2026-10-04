@@ -134,6 +134,9 @@ access-control boundary; the application repository must enforce this query path
 
 ## Data and validation
 
+Build the offline SQLite/UI seed with `python scripts/offline_package.py build`.
+See [Offline package](docs/OFFLINE_PACKAGE.md) for validation and safe first installation.
+
 For sample images, edge cases and English/Hindi UI fixtures, see
 [Demo samples](docs/DEMO_SAMPLES.md). Generate them with `python scripts/prepare_demo.py`.
 
