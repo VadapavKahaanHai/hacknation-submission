@@ -287,7 +287,7 @@ def export_bundle(db_path: str, out_path: str) -> None:
 
 
 CROPSETS = {  # cropset name -> (active model version, enabled crops)
-    "full": ("v0.2", {"bean", "coffee", "maize"}),
+    "full": ("v0.3", {"bean", "coffee", "maize"}),
     "bean_maize": ("v0.2b", {"bean", "maize"}),
 }
 

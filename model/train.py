@@ -9,7 +9,7 @@ Single source of truth: crop.db. This script has NO label mapping of its own.
 Colab (T4), files in /content: train.py, crop.db, verify.py, verify.mjs
 Data comes from Hugging Face (pip install datasets). TFDS is NOT used: its iBean URL returns 403.
   !python train.py smoke                         # export an untrained model first
-  !python train.py prep full coffee_raw          # crop set C; coffee unzipped into ./coffee_raw
+  !python train.py prep full JMuBEN              # bean + coffee + maize, 13 classes (model v0.3)
   !python train.py prep bean_maize               # fallback if coffee fails (no coffee folder needed)
   !python train.py train
   !python train.py export
@@ -17,6 +17,7 @@ prep writes data/manifest.json; train and export read it, so they can never disa
 """
 import hashlib
 import json
+import os
 import random
 import re
 import shutil
@@ -29,10 +30,10 @@ import numpy as np
 import tensorflow as tf
 
 DB = "crop.db"
-CROPSETS = {"full": "v0.2", "bean_maize": "v0.2b"}
+CROPSETS = {"full": "v0.3", "bean_maize": "v0.2b"}
 IMG = 224
 CAP = 400                 # max images per class
-COFFEE_MIN = 150          # fewer than this per coffee class after cleaning = abandon coffee
+COFFEE_MIN = int(os.environ.get("COFFEE_MIN", 150))   # fewer distinct images than this = stop
 DATA = Path("data")
 MANIFEST = DATA / "manifest.json"
 SEED = 42
@@ -143,48 +144,78 @@ def load_plantvillage(aliases, labels, counts):
     save_rows(ds, take(ds, col, wanted, names), counts)
 
 
-def load_coffee(root, aliases, labels, counts):
-    """Folder loader for the Soroti Uganda coffee dataset.
-    Class = nearest folder whose name is in label_aliases(source='coffee_uganda').
-    Skips anything whose path or filename contains 'aug' (pre-augmented copies),
-    and drops byte-identical duplicates (md5)."""
+D4_BITS_THRESHOLD = int(os.environ.get("D4_THRESHOLD", 15))   # of 256 bits; tune with d4_diag.py
+
+
+def d4_variants(path):
+    """8 average hashes (16x16 = 256 bits) of a grayscale thumbnail: every rotation and flip.
+    Brightness changes do not matter because each bit is 'above or below this image's own mean'."""
+    from PIL import Image
+    try:
+        g = np.asarray(Image.open(path).convert("L").resize((16, 16)), dtype=np.float32)
+    except Exception:
+        return None                 # corrupt or unreadable file
+    out = []
+    for k in range(4):
+        r = np.rot90(g, k)
+        for v in (r, np.fliplr(r)):
+            out.append((v > v.mean()).ravel())
+    return np.stack(out)            # (8, 256) bool
+
+
+def load_coffee(root, aliases, labels, counts, source="jmuben"):
+    """Folder loader for coffee (JMuBEN + JMuBEN2 class folders under one root).
+    Class = nearest folder whose name is in label_aliases(source).
+    Drops byte-identical files, then rotated/flipped/brightened copies of the same leaf (d4_variants, near match),
+    so one physical leaf cannot land in both train and validation."""
     root = Path(root)
     if not root.exists():
-        sys.exit(f"Coffee folder '{root}' not found. Unzip the dataset there, or use: prep bean_maize")
-    cmap = aliases["coffee_uganda"]
-    files = sorted(p for p in root.rglob("*") if p.suffix.lower() in IMG_EXT)
+        sys.exit(f"Coffee folder '{root}' not found. Unzip JMuBEN there, or use: prep bean_maize")
+    cmap = aliases.get(source, {})
+    files = sorted(p for p in root.rglob("*") if p.suffix.lower() in IMG_EXT and not p.name.startswith(".")
+                   and "__MACOSX" not in p.parts)
     if not files:
-        sys.exit(f"No images under {root}. Is the zip nested? Try: unzip inner zips, then rerun.")
+        sys.exit(f"No images under {root}. Is the zip nested? Unzip inner zips, then rerun.")
 
-    unmapped_dirs, by_class, skipped_aug, dupes, seen = set(), {}, 0, 0, set()
+    unmapped_dirs, by_class = set(), {}
     for f in files:
         parts = f.relative_to(root).parts
-        if any("aug" in norm(p) for p in parts):
-            skipped_aug += 1
-            continue
         cls = next((cmap[norm(p)] for p in reversed(parts[:-1]) if norm(p) in cmap), None)
         if cls is None:
             unmapped_dirs.add(str(f.parent.relative_to(root)))
             continue
-        h = hashlib.md5(f.read_bytes()).hexdigest()
-        if h in seen:
-            dupes += 1
-            continue
-        seen.add(h)
-        by_class.setdefault(cls, []).append(f)
-
+        if cls in labels:
+            by_class.setdefault(cls, []).append(f)
     if unmapped_dirs:
-        sys.exit("Coffee folders not in label_aliases (add them as source 'coffee_uganda'):\n  "
-                 + "\n  ".join(sorted(unmapped_dirs)))
-    print(f"coffee: skipped {skipped_aug} augmented files, {dupes} exact duplicates")
+        sys.exit(f"Coffee folders not in label_aliases (source '{source}'). Send these names:\n  "
+                 + "\n  ".join(sorted(unmapped_dirs)[:30]))
+
     for cls in [c for c in labels if c.startswith("coffee_")]:
         fl = by_class.get(cls, [])
         random.Random(SEED).shuffle(fl)
-        print(f"  {cls}: {len(fl)} usable originals")
-        if len(fl) < COFFEE_MIN:
-            sys.exit(f"Only {len(fl)} usable images for {cls} (< {COFFEE_MIN}). "
-                     "Abandon coffee: run  prep bean_maize  and  cropdb.py set-cropset crop.db bean_maize")
-        for f in fl[:CAP]:
+        seen_md5, kept_hashes, keep, exact, near, bad = set(), [], [], 0, 0, 0
+        for f in fl:
+            if len(keep) >= CAP:
+                break
+            h = hashlib.md5(f.read_bytes()).hexdigest()
+            if h in seen_md5:
+                exact += 1; continue
+            seen_md5.add(h)
+            v = d4_variants(f)
+            if v is None:
+                bad += 1; continue
+            if kept_hashes:
+                dist = (v[:, None, :] != np.stack(kept_hashes)[None, :, :]).sum(-1)   # (8, kept)
+                if dist.min() <= D4_BITS_THRESHOLD:
+                    near += 1; continue
+            kept_hashes.append(v[0])
+            keep.append(f)
+        print(f"  {cls:22s} files {len(fl):6d}  exact dupes {exact:5d}  rotated/flipped dupes {near:5d}  "
+              f"corrupt {bad:3d}  kept {len(keep)}")
+        if len(keep) < COFFEE_MIN:
+            sys.exit(f"Only {len(keep)} distinct images for {cls} (< {COFFEE_MIN}). "
+                     "Use: prep bean_maize  and  cropdb.py set-cropset crop.db bean_maize")
+        for f in keep:
             img = tf.io.decode_image(f.read_bytes(), channels=3, expand_animations=False)
             save(img, cls, counts[cls]); counts[cls] += 1
 
@@ -198,7 +229,7 @@ def prep(cropset, coffee_dir=None):
     counts = {c: 0 for c in labels}
 
     if any(c.startswith("coffee_") for c in labels):   # fail fast, before the long downloads
-        load_coffee(coffee_dir or "coffee_raw", aliases, labels, counts)
+        load_coffee(coffee_dir or "JMuBEN", aliases, labels, counts)
         print("coffee done", {k: v for k, v in counts.items() if v})
     load_beans(aliases, labels, counts)
     print("beans done", {k: v for k, v in counts.items() if v})
@@ -253,8 +284,12 @@ def train():
     labels = m["labels"]
     tr, va = datasets(labels)
     model, base = build_model(len(labels))
+    # rare classes (e.g. coffee_cercospora, ~73 distinct leaves) count more, so they are not ignored
+    cnt = [max(m["counts"].get(c, 0), 1) for c in labels]
+    cw = {i: sum(cnt) / (len(cnt) * n) for i, n in enumerate(cnt)}
+    print("class weights:", {labels[i]: round(w, 2) for i, w in cw.items()})
     model.compile(optimizer=tf.keras.optimizers.Adam(1e-3), loss="sparse_categorical_crossentropy", metrics=["accuracy"])
-    model.fit(tr, validation_data=va, epochs=5)
+    model.fit(tr, validation_data=va, epochs=5, class_weight=cw)
     base.trainable = True
     for layer in base.layers[:-30]:
         layer.trainable = False
@@ -262,7 +297,7 @@ def train():
         if isinstance(layer, tf.keras.layers.BatchNormalization):
             layer.trainable = False
     model.compile(optimizer=tf.keras.optimizers.Adam(1e-4), loss="sparse_categorical_crossentropy", metrics=["accuracy"])
-    model.fit(tr, validation_data=va, epochs=4,
+    model.fit(tr, validation_data=va, epochs=4, class_weight=cw,
               callbacks=[tf.keras.callbacks.EarlyStopping(patience=2, restore_best_weights=True)])
     model.save("model.keras")
     per_class_report(model, va, labels)

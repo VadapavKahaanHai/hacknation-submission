@@ -133,10 +133,10 @@ CREATE INDEX idx_tr_lookup     ON translations(lang, entity_type, entity_id);
 
 INSERT INTO meta VALUES
  ('schema_version','2'),
- ('content_version','0.3.1'),
+ ('content_version','0.4.1'),
  ('cropset','full'),
- ('active_model_version','v0.2'),
- ('threshold_high','0.80'),
+ ('active_model_version','v0.3'),
+ ('threshold_high','0.90'),
  ('threshold_unknown','0.40'),
  ('threshold_margin','0.15'),
  ('threshold_danger_watch','0.25');
@@ -183,6 +183,12 @@ INSERT INTO diseases VALUES
   'Dark brown to black patches on young leaves, often starting at the edge or tip.','draft','Extension fact sheet (to cite)'),
  ('coffee_healthy','coffee','Healthy coffee',NULL,'none',0,0,0,
   'No disease found on this leaf.','Even dark green colour, no spots or powder.','draft','n/a'),
+ ('coffee_cercospora','coffee','Cercospora leaf spot (brown eye spot)','Cercospora coffeicola','fungal',1,1,0,
+  'Fungus that is worst on stressed or poorly fed trees and in strong sun. Can also spot the berries.',
+  'Round brown spots with a light grey centre and a yellow ring, like an eye.','draft','UH CTAHR PD-41 (to adapt)'),
+ ('coffee_leaf_miner','coffee','Coffee leaf miner','Leucoptera spp.','pest',1,1,0,
+  'Small moth larvae that tunnel inside the leaf. Heavy attack makes leaves fall early.',
+  'Brown irregular dry patches where the leaf surface peels like thin paper.','draft','Regional reference pending'),
  -- maize
  ('maize_common_rust','maize','Common rust','Puccinia sorghi','fungal',1,1,0,
   'Fungus spread by wind. Usually not serious on strong plants, but can reduce yield when many leaves are covered.',
@@ -216,7 +222,13 @@ INSERT INTO symptoms (symptom_id, disease_id, sort_order, plant_part, text_en) V
  (14,'maize_gray_leaf_spot',2,'leaf','Spots run along the leaf between the veins'),
  (15,'maize_gray_leaf_spot',3,'whole_plant','Lower leaves die first, then upper leaves'),
  (16,'maize_northern_leaf_blight',1,'leaf','Long cigar shaped grey green to tan spots'),
- (17,'maize_northern_leaf_blight',2,'leaf','Spots join together and leaves dry out');
+ (17,'maize_northern_leaf_blight',2,'leaf','Spots join together and leaves dry out'),
+ (18,'coffee_cercospora',1,'leaf','Round brown spots with a pale grey centre'),
+ (19,'coffee_cercospora',2,'leaf','Yellow ring around each spot'),
+ (20,'coffee_cercospora',3,'fruit','Dark sunken patches on berries'),
+ (21,'coffee_leaf_miner',1,'leaf','Brown dry blotches on the top of the leaf'),
+ (22,'coffee_leaf_miner',2,'leaf','Thin leaf skin over the blotch peels off; tiny larvae may be inside'),
+ (23,'coffee_leaf_miner',3,'whole_plant','Many leaves falling in the dry season');
 
 INSERT INTO advice (advice_id, disease_id, kind, method, sort_order, text_en, safety_note) VALUES
  -- bean (unchanged text)
@@ -255,12 +267,21 @@ INSERT INTO advice (advice_id, disease_id, kind, method, sort_order, text_en, sa
   'Follow the label for dose and days before harvest. Wear gloves and a mask.'),
  (22,'maize_northern_leaf_blight','prevention','varietal',1,'Plant resistant varieties and rotate with beans.',NULL),
  -- unknown
- (23,'unknown','today','cultural',1,'Take a new photo: one leaf, close up, in daylight, not blurry.',NULL);
+ (23,'unknown','today','cultural',1,'Take a new photo: one leaf, close up, in daylight, not blurry.',NULL),
+ (24,'coffee_cercospora','today','cultural',1,'Check whether the trees look weak or yellow. Feed them and water in dry spells.',NULL),
+ (25,'coffee_cercospora','treatment','chemical',1,'If spots spread to berries, ask your agriculture officer about a fungicide approved for coffee.',
+  'Follow the label for dose and days before harvest. Wear gloves and a mask.'),
+ (26,'coffee_cercospora','prevention','cultural',1,'Keep some shade over the coffee and fertilise regularly. Strong, well fed trees resist it.',NULL),
+ (27,'coffee_leaf_miner','today','cultural',1,'Pick and destroy the worst mined leaves. Count how many leaves per branch are affected.',NULL),
+ (28,'coffee_leaf_miner','treatment','biological',1,'Wasps and other natural enemies often control the miner. Avoid broad spectrum sprays that kill them.',NULL),
+ (29,'coffee_leaf_miner','prevention','cultural',1,'Keep moderate shade and remove weeds. Ask your agriculture officer before using any insecticide.',NULL);
 
 INSERT INTO followup_questions VALUES
  ('q_bean_powder','bean','bean_rust','Does a reddish powder come off on your finger when you rub a spot?',2.0,0.5),
  ('q_coffee_orange_powder','coffee','coffee_leaf_rust','Is there orange or yellow powder under the spots?',2.0,0.5),
  ('q_coffee_tips_dying','coffee','coffee_phoma','Are the youngest shoot tips turning black and dying?',2.0,0.6),
+ ('q_coffee_eye_spot','coffee','coffee_cercospora','Do the spots look like an eye: brown with a pale grey centre?',2.0,0.6),
+ ('q_coffee_peeling','coffee','coffee_leaf_miner','Does the thin top skin of the brown patch peel off?',2.2,0.5),
  ('q_maize_powder','maize','maize_common_rust','Does brown powder rub off on your finger?',2.0,0.5),
  ('q_maize_cigar','maize','maize_northern_leaf_blight','Are the spots long like a cigar, longer than your finger?',2.0,0.6),
  ('q_maize_rectangles','maize','maize_gray_leaf_spot','Are the spots narrow with straight sides, between the leaf veins?',1.8,0.6);
@@ -281,6 +302,10 @@ INSERT INTO translations (entity_type, entity_id, field, lang, text) VALUES
  ('urgency','3','action','hi','आज ही कदम उठाएँ'),
  ('disease','coffee_leaf_rust','name','hi','कॉफ़ी का रतुआ'),
  ('disease','coffee_leaf_rust','name','pa','ਕੌਫੀ ਦੀ ਕੁੰਗੀ'),
+ ('disease','coffee_cercospora','name','hi','सर्कोस्पोरा पत्ती धब्बा'),
+ ('disease','coffee_leaf_miner','name','hi','पत्ती सुरंगक कीट'),
+ ('disease','coffee_phoma','name','hi','फोमा'),
+ ('disease','coffee_healthy','name','hi','स्वस्थ'),
  ('disease','coffee_leaf_rust','summary','hi','यह फफूंद हवा और बारिश की छींटों से फैलती है। यह पेड़ की ज़्यादातर पत्तियाँ गिरा सकती है और अगले मौसम की फ़सल घटा सकती है।'),
  ('disease','coffee_leaf_rust','why','hi','पत्तियों के नीचे नारंगी पीला चूर्ण, और ऊपर हल्के पीले धब्बे।'),
  ('symptom','5','text','hi','पत्तियों के नीचे नारंगी पीला चूर्ण'),
@@ -338,7 +363,17 @@ INSERT INTO label_aliases (source, raw_label, disease_id) VALUES
  ('coffee_uganda','Coffee Rust','coffee_leaf_rust'),
  ('coffee_uganda','Phoma','coffee_phoma'),
  ('coffee_uganda','Phoma Disease','coffee_phoma'),
- ('coffee_uganda','Coffee Phoma','coffee_phoma');
+ ('coffee_uganda','Coffee Phoma','coffee_phoma'),
+ ('jmuben','Cerscospora','coffee_cercospora'),
+ ('jmuben','Cercospora','coffee_cercospora'),
+ ('jmuben','Leaf rust','coffee_leaf_rust'),
+ ('jmuben','Leaf_rust','coffee_leaf_rust'),
+ ('jmuben','Rust','coffee_leaf_rust'),
+ ('jmuben','Phoma','coffee_phoma'),
+ ('jmuben','Forma','coffee_phoma'),
+ ('jmuben','Healthy','coffee_healthy'),
+ ('jmuben','Miner','coffee_leaf_miner'),
+ ('jmuben','Leaf miner','coffee_leaf_miner');
 
 -- v0.2  = crop set C, 11 classes (primary)
 -- v0.2b = bean + maize fallback, 8 classes
@@ -362,4 +397,17 @@ INSERT INTO model_classes (model_version, class_index, disease_id) VALUES
  ('v0.2b',4,'maize_gray_leaf_spot'),
  ('v0.2b',5,'maize_healthy'),
  ('v0.2b',6,'maize_northern_leaf_blight'),
- ('v0.2b',7,'unknown');
+ ('v0.2b',7,'unknown'),
+ ('v0.3',0,'bean_angular_leaf_spot'),
+ ('v0.3',1,'bean_healthy'),
+ ('v0.3',2,'bean_rust'),
+ ('v0.3',3,'coffee_cercospora'),
+ ('v0.3',4,'coffee_healthy'),
+ ('v0.3',5,'coffee_leaf_miner'),
+ ('v0.3',6,'coffee_leaf_rust'),
+ ('v0.3',7,'coffee_phoma'),
+ ('v0.3',8,'maize_common_rust'),
+ ('v0.3',9,'maize_gray_leaf_spot'),
+ ('v0.3',10,'maize_healthy'),
+ ('v0.3',11,'maize_northern_leaf_blight'),
+ ('v0.3',12,'unknown');
