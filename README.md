@@ -1,3 +1,38 @@
+# Leaf Check: offline crop leaf diagnosis for smallholder farmers
+
+**Live app:** https://vedk08.github.io/leaf-check/  (open once online, then it works in airplane mode; add to home screen)
+
+Leaf Check helps a farmer like Noor, who grows coffee, maize and beans, find out what is wrong with a leaf and what to do today. It runs fully on the phone the farmer already owns. No server, and no photo leaves the device.
+
+## How it works
+1. Pick the crop, photograph one leaf.
+2. A 3.9 MB MobileNetV3Small model (13 classes) runs in the browser with TensorFlow.js (WASM).
+3. The app shows the likely issue, urgency and confidence, then advice for today, treatment and prevention.
+4. English and Hindi, with read aloud.
+
+## Trust and uncertainty
+- Non leaf photos are caught and the user is asked to retake.
+- A leaf from a different crop than the one picked triggers a warning.
+- Below 0.90 confidence the app asks 1 or 2 yes or no questions, and if still unsure tells the farmer to show an agriculture officer.
+- Chemical advice says "approved for your area", carries safety notes, and names no products or doses.
+
+## Results (validation set, same sources as training, so optimistic)
+- Accuracy 90.5%. At the 0.90 threshold, 74% of leaves get an instant answer and 97.8% of those are correct.
+- 99.4% of other crop leaves rejected as unknown, 0.2% of real leaves wrongly rejected.
+
+## Known limitations
+- Coffee datasets are heavily pre augmented: about 19,000 healthy coffee files held only about 12 distinct leaves. We remove exact, rotated and flipped copies before splitting.
+- Maize images are lab photos, so field accuracy will be lower.
+- Weakest classes: maize northern leaf blight (0.73 recall), coffee leaf rust (0.78), phoma (0.80).
+
+## Repo map
+- `web/` the offline farmer app (deployed to the live link)
+- `model/` training, export and WASM fix scripts. Details in `MODEL_README.md`
+- `data_layer/` crop database: diseases, advice, Hindi translations, confidence rules
+- `docs/`, `knowledge/`, `tests/` supporting material
+
+**Team:** Sanket (data pipeline and dataset audit), Ved (model, app and offline deployment)
+
 # Offline coffee advisory data workflow
 
 For the next application step, see [runtime query functions and inference API](docs/API.md).
