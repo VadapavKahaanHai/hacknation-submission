@@ -41,6 +41,7 @@ python -m http.server 8000 --directory web
 ```
 
 Open **http://localhost:8000**. Use the HTTPS live app to test offline installation on a phone.
+   **Demo video:** https://youtu.be/rxg9sNYvCfg
 
 ## Repository
 
